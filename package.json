@@ -1,0 +1,42 @@
+{
+  "name": "shami-account",
+  "version": "0.0.1",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/app.js NODE_ENV=production",
+    "db:dev": "ts-node src/createTables.ts NODE_ENV=development",
+    "db": "node dist/createTables.js NODE_ENV=production",
+    "start:dev": "ts-node src/app.ts NODE_ENV=development",
+    "dev": "nodemon src/app.ts NODE_ENV=development",
+    "test": "jest",
+    "pretest": "eslint --ignore-path .gitignore .",
+    "build": "tsc -p ."
+  },
+  "devDependencies": {
+    "@types/bunyan": "^1.8.6",
+    "@types/express": "4.17.8",
+    "@types/jest": "26.0.15",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "eslint": "7.12.1",
+    "eslint-config-airbnb-typescript": "12.0.0",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-prettier": "3.1.4",
+    "nodemon": "2.0.6",
+    "ts-jest": "26.4.3",
+    "ts-node": "9.0.0",
+    "typescript": "4.0.5"
+  },
+  "dependencies": {
+    "apollo-server-express": "2.19.0",
+    "body-parser-graphql": "^1.1.0",
+    "bunyan": "1.8.14",
+    "cors": "2.8.5",
+    "dotenv-flow": "3.2.0",
+    "express": "4.17.1",
+    "graphql": "15.4.0",
+    "mysql2": "2.2.5",
+    "sequelize": "6.3.5"
+  }
+}
