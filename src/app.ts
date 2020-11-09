@@ -3,6 +3,9 @@ import express from 'express';
 import { graphql } from 'body-parser-graphql';
 import { ApolloServer, makeExecutableSchema, gql } from 'apollo-server-express';
 import cors from 'cors';
+import passport from 'passport';
+
+import { authMiddleware, loginMiddleware } from './authBy/faceBook';
 
 import database from './database';
 import { isDevelopment, PORT } from './config';
@@ -23,6 +26,11 @@ const resolvers = {
 
 app.use('*', cors());
 app.use(graphql());
+
+// authentication as
+app.use(passport.initialize());
+app.get('/login/facebook', loginMiddleware);
+app.get('/auth/facebook/callback', authMiddleware);
 
 const schema = makeExecutableSchema({
   typeDefs,

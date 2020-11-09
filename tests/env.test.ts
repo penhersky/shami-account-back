@@ -5,6 +5,8 @@ import {
   DB_PASSWORD,
   DB_HOST,
   DB_USER_NAME,
+  FACEBOOK_APP_ID,
+  APP_URL,
 } from '../src/config';
 
 describe('# Download the basic dependencies', () => {
@@ -27,5 +29,13 @@ describe('# Download the basic dependencies', () => {
   it('DB_USER_NAME', () => {
     expect(DB_USER_NAME).not.toBeNaN();
     expect(typeof DB_USER_NAME === 'number');
+  });
+  it('FACEBOOK_APP_ID', () => {
+    expect(FACEBOOK_APP_ID).not.toBeNaN();
+    expect(typeof FACEBOOK_APP_ID === 'number');
+  });
+  it('APP_URL', () => {
+    expect(APP_URL).not.toBeNaN();
+    expect(typeof APP_URL === 'number');
   });
 });

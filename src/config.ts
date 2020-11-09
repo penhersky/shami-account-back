@@ -9,3 +9,11 @@ export const { DB_NAME } = ENV;
 export const { DB_USER_NAME } = ENV;
 export const { DB_PASSWORD } = ENV;
 export const { DB_HOST } = ENV;
+
+// app utl
+export const { APP_URL } = ENV;
+export const { CLIENT_ACCOUNT_URL } = ENV;
+
+// auth
+export const { FACEBOOK_APP_ID } = ENV;
+export const { FACEBOOK_APP_SECRET } = ENV;
