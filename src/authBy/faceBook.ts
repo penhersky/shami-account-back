@@ -5,7 +5,7 @@ import {
   FACEBOOK_APP_ID,
   FACEBOOK_APP_SECRET,
   APP_URL,
-  CLIENT_ACCOUNT_URL,
+  CLIENT_URL,
 } from '../config';
 
 const passportFacebook = passport.use(
@@ -36,8 +36,8 @@ const passportFacebook = passport.use(
 export const loginMiddleware = passportFacebook.authenticate('facebook');
 
 export const authMiddleware = passportFacebook.authenticate('facebook', {
-  successRedirect: `${CLIENT_ACCOUNT_URL}/`,
-  failureRedirect: `${CLIENT_ACCOUNT_URL}/login`,
+  successRedirect: `${CLIENT_URL}/`,
+  failureRedirect: `account.${CLIENT_URL}/login`,
   session: false,
 });
 

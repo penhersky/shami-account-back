@@ -7,6 +7,7 @@ import {
   DB_USER_NAME,
   FACEBOOK_APP_ID,
   APP_URL,
+  GOOGLE_APP_ID,
 } from '../src/config';
 
 describe('# Download the basic dependencies', () => {
@@ -37,5 +38,9 @@ describe('# Download the basic dependencies', () => {
   it('APP_URL', () => {
     expect(APP_URL).not.toBeNaN();
     expect(typeof APP_URL === 'number');
+  });
+  it('GOOGLE_APP_ID', () => {
+    expect(GOOGLE_APP_ID).not.toBeNaN();
+    expect(typeof GOOGLE_APP_ID === 'number');
   });
 });

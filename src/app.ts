@@ -6,6 +6,7 @@ import cors from 'cors';
 import passport from 'passport';
 
 import { authMiddleware, loginMiddleware } from './authBy/faceBook';
+import { authGoogleMiddleware, loginGoogleMiddleware } from './authBy/google';
 
 import database from './database';
 import { isDevelopment, PORT } from './config';
@@ -31,6 +32,8 @@ app.use(graphql());
 app.use(passport.initialize());
 app.get('/login/facebook', loginMiddleware);
 app.get('/auth/facebook/callback', authMiddleware);
+app.get('/login/google', loginGoogleMiddleware);
+app.get('/auth/google/callback', authGoogleMiddleware);
 
 const schema = makeExecutableSchema({
   typeDefs,

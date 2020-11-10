@@ -12,8 +12,10 @@ export const { DB_HOST } = ENV;
 
 // app utl
 export const { APP_URL } = ENV;
-export const { CLIENT_ACCOUNT_URL } = ENV;
+export const { CLIENT_URL } = ENV;
 
 // auth
 export const { FACEBOOK_APP_ID } = ENV;
 export const { FACEBOOK_APP_SECRET } = ENV;
+export const { GOOGLE_APP_ID } = ENV;
+export const { GOOGLE_APP_SECRET } = ENV;
