@@ -9,7 +9,8 @@ import { authMiddleware, loginMiddleware } from './authBy/faceBook';
 import { authGoogleMiddleware, loginGoogleMiddleware } from './authBy/google';
 
 import database from './database';
-import { isDevelopment, PORT } from './config';
+import { PORT } from './config';
+import { logInfo, logError } from './lib/logger';
 
 const app = express();
 
@@ -51,15 +52,12 @@ server.applyMiddleware({ app, path: '/graphql' });
 database
   .authenticate()
   .then(() => {
-    console.log('✔️ Successfully connected to mysql');
+    logInfo('✔️ Successfully connected to mysql');
   })
   .catch((error: string) => {
-    if (isDevelopment) console.log(error);
-    console.log('❌ Unable to connect to the database');
+    logError('❌ Unable to connect to the database', error);
   });
 
 app.listen({ port: PORT }, () =>
-  console.log(
-    `🚀 Server ready at 🔗 http://localhost:4000${server.graphqlPath}`,
-  ),
+  logInfo(`🚀 Server ready at 🔗 http://localhost:4000${server.graphqlPath}`),
 );

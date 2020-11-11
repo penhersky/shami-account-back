@@ -10,6 +10,9 @@ export const { DB_USER_NAME } = ENV;
 export const { DB_PASSWORD } = ENV;
 export const { DB_HOST } = ENV;
 
+// log lever
+export const { LOG_LEVEL } = ENV;
+
 // app utl
 export const { APP_URL } = ENV;
 export const { CLIENT_URL } = ENV;

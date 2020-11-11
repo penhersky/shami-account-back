@@ -1,5 +1,6 @@
 node_modules
 logError.json
+/logs
 yarn-error.log
 uploads
 static
