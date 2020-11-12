@@ -5,10 +5,7 @@ export const isDevelopment: boolean = !isProduction;
 export const PORT: number | undefined = Number(ENV.PORT);
 
 // database
-export const { DB_NAME } = ENV;
-export const { DB_USER_NAME } = ENV;
-export const { DB_PASSWORD } = ENV;
-export const { DB_HOST } = ENV;
+export const { DB_STR_URL } = ENV;
 
 // log lever
 export const { LOG_LEVEL } = ENV;

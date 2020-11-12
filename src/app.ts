@@ -9,8 +9,8 @@ import { authMiddleware, loginMiddleware } from './authBy/faceBook';
 import { authGoogleMiddleware, loginGoogleMiddleware } from './authBy/google';
 
 import database from './database';
-import { PORT } from './config';
-import { logInfo, logError } from './lib/logger';
+import { PORT, DB_STR_URL } from './config';
+import { logInfo } from './lib/logger';
 
 const app = express();
 
@@ -22,7 +22,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    hello: () => 'The result was obtained successfully! Congratulations!',
+    hello: async () => 'The result was obtained successfully! Congratulations!',
   },
 };
 
@@ -49,14 +49,7 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-database
-  .authenticate()
-  .then(() => {
-    logInfo('✔️ Successfully connected to mysql');
-  })
-  .catch((error: string) => {
-    logError('❌ Unable to connect to the database', error);
-  });
+database(String(DB_STR_URL));
 
 app.listen({ port: PORT }, () =>
   logInfo(`🚀 Server ready at 🔗 http://localhost:4000${server.graphqlPath}`),
