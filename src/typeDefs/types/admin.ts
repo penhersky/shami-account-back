@@ -32,6 +32,11 @@ export default gql`
     admins: [Admin]
   }
 
+  type OneAdmins {
+    result: result
+    admin: Admin
+  }
+
   type AdminLogin {
     admin: Admin
     token: String

@@ -19,3 +19,6 @@ export const { FACEBOOK_APP_ID } = ENV;
 export const { FACEBOOK_APP_SECRET } = ENV;
 export const { GOOGLE_APP_ID } = ENV;
 export const { GOOGLE_APP_SECRET } = ENV;
+
+// Secret keys
+export const { ADMIN_TOKEN_SECURITY_KEY } = ENV;

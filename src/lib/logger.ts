@@ -7,6 +7,7 @@ const { timestamp, combine, prettyPrint } = format;
 const logger = winston.createLogger({
   level: LOG_LEVEL,
   format: combine(timestamp(), prettyPrint()),
+  defaultMeta: { service: 'Account service' },
   transports: [
     new winston.transports.File({
       filename: './logs/error.log',
@@ -15,6 +16,10 @@ const logger = winston.createLogger({
     new winston.transports.File({
       filename: './logs/info.log',
       level: 'info',
+    }),
+    new winston.transports.File({
+      filename: './logs/warn.log',
+      level: 'warn',
     }),
   ],
 });
@@ -30,5 +35,7 @@ export const logError = (msg: string, ...args: any) =>
   logger.error(msg, ...args);
 
 export const logInfo = (msg: string, ...args: any) => logger.info(msg, ...args);
+
+export const logWarn = (msg: string, ...args: any) => logger.warn(msg, ...args);
 
 export default logger;

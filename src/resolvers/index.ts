@@ -1,8 +1,10 @@
 import resolveAdminUnion from './admin/resolveUnion';
 
+import adminLogin from './admin/Query/login';
+
 export default {
   Query: {
-    hello: () => 'The result was obtained successfully! Congratulations!',
+    adminLogin,
   },
   ...resolveAdminUnion,
 };

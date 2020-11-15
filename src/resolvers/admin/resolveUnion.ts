@@ -1,11 +1,11 @@
 export default {
   ResAdmin: {
     __resolveType(obj: any): string | null {
-      if (obj.message || obj.error) {
+      if (obj.message) {
         return 'Result';
       }
 
-      if (obj.id) {
+      if (obj?.admin?.id) {
         return 'Admin';
       }
 
@@ -14,7 +14,7 @@ export default {
   },
   ResAdmins: {
     __resolveType(obj: any): string | null {
-      if (obj.message || obj.error) {
+      if (obj.message) {
         return 'Result';
       }
 
@@ -27,7 +27,7 @@ export default {
   },
   ResAdminLogin: {
     __resolveType(obj: any): string | null {
-      if (obj.message || obj.error) {
+      if (obj.message) {
         return 'Result';
       }
 

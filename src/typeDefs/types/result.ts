@@ -6,8 +6,8 @@ export default gql`
     SUCCESS
   }
   type Result {
-    result: result
+    result: result!
     message: String!
-    redirectTo: String!
+    redirectTo: String
   }
 `;
