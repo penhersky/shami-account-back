@@ -26,15 +26,15 @@ const AdminModel = mongoose.model<Admin>(
       },
       imageUrl: {
         type: String,
-        allowNull: true,
+        required: false,
       },
       password: {
         type: String,
-        allowNull: false,
+        required: true,
       },
       state: {
         type: String,
-        allowNull: true,
+        required: false,
       },
     },
     {
