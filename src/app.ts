@@ -2,12 +2,14 @@ import 'dotenv-flow/config';
 import express from 'express';
 import rateLimit from 'express-rate-limit';
 import { graphql } from 'body-parser-graphql';
-import { ApolloServer, makeExecutableSchema, gql } from 'apollo-server-express';
+import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
 import cors from 'cors';
 import passport from 'passport';
 
 import { authMiddleware, loginMiddleware } from './authBy/faceBook';
 import { authGoogleMiddleware, loginGoogleMiddleware } from './authBy/google';
+
+import typeDefs from './typeDefs';
 
 import database from './database';
 import { PORT, DB_STR_URL } from './config';
@@ -19,12 +21,6 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
 });
-
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
 
 const resolvers = {
   Query: {
