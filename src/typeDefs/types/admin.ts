@@ -29,7 +29,7 @@ export default gql`
 
   type AllAdmins {
     count: Int
-    admins: [Admins]
+    admins: [Admin]
   }
 
   type AdminLogin {

@@ -10,6 +10,7 @@ import { authMiddleware, loginMiddleware } from './authBy/faceBook';
 import { authGoogleMiddleware, loginGoogleMiddleware } from './authBy/google';
 
 import typeDefs from './typeDefs';
+import resolvers from './resolvers';
 
 import database from './database';
 import { PORT, DB_STR_URL } from './config';
@@ -21,12 +22,6 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
 });
-
-const resolvers = {
-  Query: {
-    hello: () => 'The result was obtained successfully! Congratulations!',
-  },
-};
 
 app.use('*', cors());
 app.use(limiter);

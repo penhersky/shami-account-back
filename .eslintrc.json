@@ -9,6 +9,7 @@
   },
   "plugins": ["eslint-plugin-import", "prettier"],
   "rules": {
-    "implicit-arrow-linebreak": "off"
+    "implicit-arrow-linebreak": "off",
+    "no-underscore-dangle": "off"
   }
 }
