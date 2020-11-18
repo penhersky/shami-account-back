@@ -1,14 +1,10 @@
-import resolveAdminUnion from './admin/resolveUnion';
-
-import adminLogin from './admin/Query/login';
-import addAdmin from './admin/Mutation/addAdmin';
+import Admin from './admin';
 
 export default {
   Query: {
-    adminLogin,
+    ...Admin.Query,
   },
   Mutation: {
-    addAdmin,
+    ...Admin.Mutation,
   },
-  ...resolveAdminUnion,
 };

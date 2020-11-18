@@ -27,22 +27,26 @@ export default gql`
     state: String
   }
 
-  type AllAdmins {
+  type Admins {
+    result: result
     count: Int
     admins: [Admin]
   }
 
-  type OneAdmins {
-    result: result
-    admin: Admin
-  }
-
   type AdminLogin {
+    result: result
+    message: String
+    redirectTo: String
     admin: Admin
     token: String
   }
 
-  union ResAdmin = Admin | Result
-  union ResAdmins = AllAdmins | Result
-  union ResAdminLogin = AdminLogin | Result
+  extend type Query {
+    getAdmins: Admins!
+    adminLogin(email: String, password: String): AdminLogin!
+  }
+
+  extend type Mutation {
+    addAdmin(admin: CreateAdmin): Admin!
+  }
 `;

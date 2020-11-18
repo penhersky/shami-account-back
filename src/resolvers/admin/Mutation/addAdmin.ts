@@ -1,20 +1,12 @@
 import bcrypt from 'bcrypt';
 
 import { Admin } from '../../../models';
-import { logError, logWarn } from '../../../lib/logger';
+import { logError } from '../../../lib/logger';
 
-export default async (_: any, args: any) => {
+export default async (_: any, { admin: args }: any) => {
   try {
     const admin = await Admin.findOne({ email: args?.email });
-    if (admin) {
-      logWarn('Administrator with such mail already exists', {
-        email: args.email,
-      });
-      return {
-        result: 'ERROR',
-        message: 'Administrator with such mail already exists',
-      };
-    }
+    if (admin) throw new Error('Administrator with such mail already exists');
 
     const salt = await bcrypt.genSalt(10);
 
@@ -28,12 +20,9 @@ export default async (_: any, args: any) => {
       state: args?.state ?? 'junior',
     });
 
-    return {
-      result: 'SUCCESS',
-      admin: newAdmin.toObject(),
-    };
+    return newAdmin.toObject();
   } catch (error) {
     logError(error);
-    return { result: 'ERROR', message: 'Server Error' };
+    return error;
   }
 };
