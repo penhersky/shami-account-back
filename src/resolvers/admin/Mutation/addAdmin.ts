@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt';
 
 import { Admin } from '../../../models';
-import { logError } from '../../../lib/logger';
+import cather from '../../../wrappers/cather';
 
-export default async (_: any, { admin: args }: any) => {
-  try {
+export default async (_: any, { admin: args }: any) =>
+  cather(async () => {
     const admin = await Admin.findOne({ email: args?.email });
     if (admin) throw new Error('Administrator with such mail already exists');
 
@@ -21,8 +21,4 @@ export default async (_: any, { admin: args }: any) => {
     });
 
     return newAdmin.toObject();
-  } catch (error) {
-    logError(error);
-    return error;
-  }
-};
+  });
