@@ -46,7 +46,13 @@ export default async (_: any, args: any) => {
     }
 
     const token = jwt.sign(
-      { id: admin.id, email: admin.email, name: admin.name, type: 'admin' },
+      {
+        id: admin.id,
+        email: admin.email,
+        state: admin?.state,
+        name: admin.name,
+        type: 'admin',
+      },
       String(ADMIN_TOKEN_SECURITY_KEY),
       {
         expiresIn: '1d',

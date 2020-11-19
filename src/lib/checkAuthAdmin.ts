@@ -3,6 +3,9 @@ import jwt from 'jsonwebtoken';
 import { logWarn } from './logger';
 import { ADMIN_TOKEN_SECURITY_KEY } from '../config';
 
+export const highSecurityCheck = (admin: any) =>
+  admin?.name === 'root' || admin?.state === 'admin';
+
 export default (context: any) => {
   try {
     const result = <string | any>(
