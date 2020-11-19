@@ -1,10 +1,7 @@
 import 'dotenv-flow/config';
 import {
   PORT,
-  DB_NAME,
-  DB_PASSWORD,
-  DB_HOST,
-  DB_USER_NAME,
+  DB_STR_URL,
   FACEBOOK_APP_ID,
   APP_URL,
   GOOGLE_APP_ID,
@@ -15,21 +12,9 @@ describe('# Download the basic dependencies', () => {
     expect(PORT).not.toBeNaN();
     expect(typeof PORT === 'number');
   });
-  it('DB_NAME', () => {
-    expect(DB_NAME).not.toBeNaN();
-    expect(typeof DB_NAME === 'number');
-  });
-  it('DB_PASSWORD', () => {
-    expect(DB_PASSWORD).not.toBeNaN();
-    expect(typeof DB_PASSWORD === 'number');
-  });
-  it('DB_HOST', () => {
-    expect(DB_HOST).not.toBeNaN();
-    expect(typeof DB_HOST === 'number');
-  });
-  it('DB_USER_NAME', () => {
-    expect(DB_USER_NAME).not.toBeNaN();
-    expect(typeof DB_USER_NAME === 'number');
+  it('DB_STR_URL', () => {
+    expect(DB_STR_URL).not.toBeNaN();
+    expect(typeof DB_STR_URL === 'string');
   });
   it('FACEBOOK_APP_ID', () => {
     expect(FACEBOOK_APP_ID).not.toBeNaN();
