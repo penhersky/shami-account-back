@@ -55,7 +55,7 @@ export default async (_: any, args: any) => {
 
     return {
       result: 'SUCCESS',
-      admin: admin.toObject(),
+      admin,
       token,
     };
   } catch (error) {

@@ -3,12 +3,16 @@ import bcrypt from 'bcrypt';
 import { Admin } from '../../../models';
 import cather from '../../../wrappers/resolverCather';
 import auth from '../../../lib/checkAuthAdmin';
+import { logInfo } from '../../../lib/logger';
 
 export default async (_: any, { admin: args }: any, context: any) =>
   cather(
-    async () => {
-      const admin = await Admin.findOne({ email: args?.email });
-      if (admin) throw new Error('Administrator with such mail already exists');
+    async (user: any) => {
+      const admins = await Admin.find({
+        $or: [{ email: args?.email }, { name: args?.name }],
+      });
+
+      if (admins.length) throw new Error('Such Administrator already exists!');
 
       const salt = await bcrypt.genSalt(10);
 
@@ -22,7 +26,9 @@ export default async (_: any, { admin: args }: any, context: any) =>
         state: args?.state ?? 'junior',
       });
 
-      return newAdmin.toObject();
+      logInfo(`✔️ created new admin ${newAdmin.name} by ${user?.name}`);
+
+      return newAdmin;
     },
     context,
     auth,
