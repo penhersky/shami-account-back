@@ -20,6 +20,7 @@ export default gql`
   }
 
   input UpdateAdmin {
+    id: ID!
     name: String
     email: String
     imageUrl: String
@@ -48,6 +49,7 @@ export default gql`
 
   extend type Mutation {
     addAdmin(admin: CreateAdmin): Admin!
-    deleteAdmin(id: String): Result!
+    updateAdmin(admin: UpdateAdmin): Admin!
+    deleteAdmin(id: ID!): Result!
   }
 `;
