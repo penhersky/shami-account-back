@@ -43,6 +43,7 @@ export default gql`
   }
 
   extend type Query {
+    getAdmin(id: ID!): Admin!
     getAdmins: Admins!
     adminLogin(email: String, password: String): AdminLogin!
   }
@@ -50,6 +51,6 @@ export default gql`
   extend type Mutation {
     addAdmin(admin: CreateAdmin): Admin!
     updateAdmin(admin: UpdateAdmin): Admin!
-    deleteAdmin(id: ID!): Result!
+    deleteAdmins(idArr: [ID!]!): Result!
   }
 `;

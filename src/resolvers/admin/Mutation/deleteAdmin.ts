@@ -6,20 +6,19 @@ import { logInfo } from '../../../lib/logger';
 export default async (_: any, args: any, context: any) =>
   cather(
     async (user: any) => {
-      const admin = await Admin.findById(args?.id);
+      if (!highSecurityCheck(user)) return new Error('Access denied!');
 
-      if (!admin) throw new Error('Such administrator does`t exist!');
+      await Admin.deleteMany({
+        _id: {
+          $in: args?.idArr,
+        },
+      });
 
-      if (!(highSecurityCheck(user) || user?.id === admin.id))
-        return new Error('Access denied!');
-
-      await admin.deleteOne();
-
-      logInfo(`❗️🗑 deleted admin ${admin.name} by ${user?.name}`);
+      logInfo(`❗️🗑 deleted admins ${args?.idArr} by ${user?.name}`);
 
       return {
         result: 'SUCCESS',
-        message: 'Administrator deleted successful!',
+        message: 'Administrators deleted successful!',
       };
     },
     context,
