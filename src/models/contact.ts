@@ -2,9 +2,10 @@ import mongoose from 'mongoose';
 
 export interface Contact extends mongoose.Document {
   profile: string;
-  password: string;
-  accessToken: string;
-  refreshToken: string;
+  show: boolean;
+  name: string;
+  value: string;
+  icon: string;
 }
 
 const ContactModel = mongoose.model<Contact>(
