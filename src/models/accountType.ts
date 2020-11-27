@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export interface AccountType extends mongoose.Document {
-  user: number;
+  user: string;
   status?: string;
 
   from?: string;
@@ -18,7 +18,6 @@ const Account = mongoose.model<AccountType>(
       },
       status: {
         type: String,
-        enum: ['default', 'group', 'leader', 'premium', 'ban'],
         default: 'default',
       },
       from: {

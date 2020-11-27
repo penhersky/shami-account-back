@@ -35,6 +35,7 @@ const AdminModel = mongoose.model<Admin>(
       state: {
         type: String,
         required: false,
+        default: 'moderator',
       },
     },
     {

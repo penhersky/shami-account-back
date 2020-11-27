@@ -4,7 +4,7 @@ import { logWarn } from './logger';
 import { ADMIN_TOKEN_SECURITY_KEY } from '../config';
 
 export const highSecurityCheck = (admin: any) =>
-  admin?.name === 'root' || admin?.state === 'admin';
+  admin?.state === 'root' || admin?.state === 'admin';
 
 export default (context: any) => {
   try {
