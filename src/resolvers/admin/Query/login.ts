@@ -21,7 +21,7 @@ export default async (_: any, args: any) => {
     }
 
     const admin = await Admin.findOne({ email: args.email }).select(
-      'id name email status password imageUrl updatedAt createdAt',
+      'id name email state password imageUrl updatedAt createdAt',
     );
     if (!admin) {
       logWarn('admin login find error', {
