@@ -1,6 +1,6 @@
 import { Contact, Profile } from '../../../models';
 import cather from '../../../wrappers/resolverCather';
-import auth from '../../../lib/checkAuthUser';
+import auth from '../../../lib/checkAuth';
 
 export default async (_: any, { contact }: any, context: any) =>
   cather(
