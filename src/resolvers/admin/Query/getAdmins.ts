@@ -5,19 +5,15 @@ import auth from '../../../lib/checkAuthAdmin';
 export default async (_: any, args: any, context: any) =>
   cather(
     async () => {
-      try {
-        const admins = await Admin.find({})
-          .select('id name email imageUrl state createdAt updatedAt')
-          .sort({ createdAt: -1 });
+      const admins = await Admin.find({})
+        .select('id name email imageUrl state createdAt updatedAt')
+        .sort({ createdAt: -1 });
 
-        return {
-          result: 'SUCCESS',
-          admins,
-          count: admins?.length,
-        };
-      } catch (error) {
-        return { result: 'ERROR', message: 'Server Error' };
-      }
+      return {
+        result: 'SUCCESS',
+        admins,
+        count: admins?.length,
+      };
     },
     context,
     auth,

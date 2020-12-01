@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-export const user = async (data: {
+const user = async (data: {
   name: string;
   email: string;
   password: string;
@@ -20,7 +20,7 @@ export const user = async (data: {
   return result.error ? result.error.details : undefined;
 };
 
-export const password = async (data: {
+const password = async (data: {
   name: string;
   email: string;
   password: string;
@@ -39,4 +39,9 @@ export const password = async (data: {
 
   const result = schema.validate(data);
   return result.error ? result.error.details : undefined;
+};
+
+export default {
+  password,
+  user,
 };

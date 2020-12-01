@@ -3,13 +3,13 @@ import bcrypt from 'bcrypt';
 
 import { Admin } from '../../../models';
 import { logError, logWarn } from '../../../lib/logger';
-import validation from '../../../lib/validation';
+import { login } from '../../../lib/validation';
 import { ADMIN_TOKEN_SECURITY_KEY } from '../../../config';
 
 export default async (_: any, args: any) => {
   try {
-    const validationErr = await validation.login(args);
-    if (typeof validation === 'string') {
+    const validationErr = await login(args);
+    if (typeof validationErr === 'string') {
       logWarn('admin login validation error', {
         message: validationErr,
         email: args.email,

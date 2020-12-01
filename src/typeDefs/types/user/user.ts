@@ -44,7 +44,7 @@ export default gql`
 
   extend type Query {
     getAccount: User!
-    getCustomer(id: ID!): Customers!
+    getCustomer(id: ID!): Customer!
     getCustomers: Customers!
     getPerformer(id: ID!): Performer!
     getPerformers: Performers!
