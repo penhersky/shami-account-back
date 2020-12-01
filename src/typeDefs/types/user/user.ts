@@ -8,9 +8,9 @@ export default gql`
     imageId: String
     provider: String!
     type: userType
+    active: Boolean
     profile: Profile # owner, admins, authUsers ++-, other +--
     accountType: AccountType
-    security: Security # only admin
     createdAt: String
     updatedAt: String
   }
@@ -20,23 +20,34 @@ export default gql`
     performer
   }
 
-  # input CreateUser {
+  type Customer {
+    user: User!
+    security: Security # only admin
+  }
 
-  # }
+  type Performer {
+    user: User!
+    security: Security # only admin
+  }
 
-  # input UpdateUser {
+  type Customers {
+    result: result
+    count: Int
+    users: [User]
+  }
 
-  # }
-
-  type Users {
+  type Performers {
     result: result
     count: Int
     users: [User]
   }
 
   extend type Query {
-    getUser(id: ID!): User!
-    getUsers: Users!
+    getAccount: User!
+    getCustomer(id: ID!): Customers!
+    getCustomers: Customers!
+    getPerformer(id: ID!): Performer!
+    getPerformers: Performers!
   }
 
   # extend type Mutation {

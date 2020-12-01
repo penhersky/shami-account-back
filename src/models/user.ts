@@ -6,7 +6,7 @@ export interface User extends mongoose.Document {
   imageId?: number;
   provider: string;
   type?: string;
-  accountType?: string;
+  active?: boolean;
 }
 
 const UserModel = mongoose.model<User>(
@@ -37,7 +37,11 @@ const UserModel = mongoose.model<User>(
         enum: ['customer', 'performer'],
         default: 'performer',
       },
-      accountType: { type: mongoose.Schema.Types.ObjectId, ref: 'AccountType' },
+      active: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
     },
     {
       timestamps: true,
