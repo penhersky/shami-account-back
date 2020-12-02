@@ -32,10 +32,10 @@
     "nodemon": "2.0.6",
     "ts-jest": "26.4.3",
     "ts-node": "9.0.0",
-    "typescript": "4.0.5"
+    "typescript": "4.0.5",
+    "@types/bcrypt": "3.0.0"
   },
   "dependencies": {
-    "@types/bcrypt": "^3.0.0",
     "apollo-server-express": "2.19.0",
     "axios": "0.21.0",
     "bcrypt": "5.0.0",

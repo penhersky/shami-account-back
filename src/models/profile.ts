@@ -2,16 +2,16 @@ import mongoose from 'mongoose';
 
 export interface Profile extends mongoose.Document {
   user: string;
-  firstName: string;
-  lastName: string;
-  middleName: string;
-  location: string;
-  description: string;
-  birthday: string;
-  categoriesId: [string];
+  firstName?: string;
+  lastName?: string;
+  middleName?: string;
+  location?: string;
+  description?: string;
+  birthday?: string;
+  categoriesId?: [string];
 }
 
-const maxLength = (val: Array<string>) => val.length > 3;
+const maxLength = (val: Array<string>) => val.length < 3;
 
 const ProfileModel = mongoose.model<Profile>(
   'Profile',
@@ -53,6 +53,7 @@ const ProfileModel = mongoose.model<Profile>(
         type: [String],
         required: false,
         validate: [maxLength, '{PATH} length must be 3 or less'],
+        default: [],
       },
     },
     {

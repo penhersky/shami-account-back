@@ -3,7 +3,6 @@ import Joi from 'joi';
 const user = async (data: {
   name: string;
   email: string;
-  password: string;
 }): Promise<undefined | Joi.ValidationErrorItem[]> => {
   const schema = Joi.object({
     name: Joi.string()
@@ -21,8 +20,6 @@ const user = async (data: {
 };
 
 const password = async (data: {
-  name: string;
-  email: string;
   password: string;
 }): Promise<undefined | Joi.ValidationErrorItem[]> => {
   const schema = Joi.object({

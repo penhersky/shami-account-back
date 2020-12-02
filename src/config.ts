@@ -24,3 +24,4 @@ export const { GOOGLE_APP_SECRET } = ENV;
 // Secret keys
 export const { ADMIN_TOKEN_SECURITY_KEY } = ENV;
 export const { USER_TOKEN_SECURITY_KEY } = ENV;
+export const { SALT } = ENV;

@@ -3,8 +3,8 @@ import mongoose from 'mongoose';
 export interface Security extends mongoose.Document {
   user: string;
   password: string;
-  accessToken: string;
-  refreshToken: string;
+  accessToken?: string;
+  refreshToken?: string;
 }
 
 const SecurityModel = mongoose.model<Security>(

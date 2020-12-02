@@ -18,10 +18,12 @@ const Account = mongoose.model<AccountType>(
       },
       status: {
         type: String,
+        required: false,
         default: 'default',
       },
       from: {
         type: Date,
+        required: false,
         default: Date.now,
       },
       to: {
