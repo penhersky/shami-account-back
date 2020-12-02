@@ -28,13 +28,13 @@ export default async (_: any, args: any) =>
     const newUser =
       user ??
       (await User.create({
-        type: 'customer',
+        type: 'performer',
         email: args.email,
         name: args.name,
         provider: 'email',
       }));
 
-    const { forTitle, html, object } = singUp(newUser.id, 'customer');
+    const { forTitle, html, object } = singUp(newUser.id, 'performer');
     await sendEmail(forTitle, object, html, [newUser.email]);
 
     return {

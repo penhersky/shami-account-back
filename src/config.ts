@@ -13,6 +13,7 @@ export const { LOG_LEVEL } = ENV;
 // app utl
 export const { APP_URL } = ENV;
 export const { CLIENT_URL } = ENV;
+export const { SLS_URL } = ENV;
 
 // auth
 export const { FACEBOOK_APP_ID } = ENV;
