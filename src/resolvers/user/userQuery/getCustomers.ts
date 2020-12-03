@@ -2,16 +2,16 @@ import { User } from '../../../models';
 import cather from '../../../wrappers/resolverCather';
 import auth from '../../../lib/checkAuth';
 
-export default async (_: any, args: any, context: any) =>
+export default async (_: any, { paginate }: any, context: any) =>
   cather(
     async () => {
       const customers = await User.paginate(
         { type: 'customer' },
         {
-          limit: args.limit,
-          page: args.page,
+          limit: paginate.limit,
+          page: paginate.page,
           select: 'id name email imageUrl type createdAt updatedAt',
-          sort: { [args.sortKey]: args?.sort === 'ASC' ? 1 : -1 },
+          sort: { [paginate.sortKey]: paginate?.sort === 'ASC' ? 1 : -1 },
         },
       );
 

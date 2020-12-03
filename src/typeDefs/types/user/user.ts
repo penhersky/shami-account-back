@@ -43,21 +43,21 @@ export default gql`
     performers: [User]
   }
 
+  type AccountRes {
+    user: User
+    admin: Admin
+  }
+
   extend type Query {
     # user
-    getAccount: User!
+    getAccount: AccountRes!
     getUser(id: ID!): User!
     # admin
     getCustomer(id: ID!): Customer! # +
-    getPerformer(id: ID!): Performer!
+    getPerformer(id: ID!): Performer! # +
     # all
-    getCustomers(page: Int, limit: Int, sort: sort, sortKey: String): Customers! # +
-    getPerformers(
-      page: Int
-      limit: Int
-      sort: sort
-      sortKey: String
-    ): Performers! # +
+    getCustomers(paginate: Paginate): Customers! # +
+    getPerformers(paginate: Paginate): Performers! # +
   }
 
   # extend type Mutation {
