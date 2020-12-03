@@ -15,11 +15,6 @@ export default gql`
     updatedAt: String
   }
 
-  enum userType {
-    customer
-    performer
-  }
-
   type Customer {
     user: User!
     security: Security # only admin
@@ -32,22 +27,37 @@ export default gql`
 
   type Customers {
     result: result
-    count: Int
-    users: [User]
+    totalItems: Int
+    page: Int
+    limit: Int
+    totalPages: Int
+    customers: [User]
   }
 
   type Performers {
     result: result
-    count: Int
-    users: [User]
+    totalItems: Int
+    page: Int
+    limit: Int
+    totalPages: Int
+    performers: [User]
   }
 
   extend type Query {
+    # user
     getAccount: User!
-    getCustomer(id: ID!): Customer!
-    getCustomers: Customers!
+    getUser(id: ID!): User!
+    # admin
+    getCustomer(id: ID!): Customer! # +
     getPerformer(id: ID!): Performer!
-    getPerformers: Performers!
+    # all
+    getCustomers(page: Int, limit: Int, sort: sort, sortKey: String): Customers! # +
+    getPerformers(
+      page: Int
+      limit: Int
+      sort: sort
+      sortKey: String
+    ): Performers! # +
   }
 
   # extend type Mutation {

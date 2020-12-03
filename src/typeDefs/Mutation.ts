@@ -10,6 +10,6 @@ export default gql`
       token: String
       oldPassword: String
       newPassword: String
-    ): Result
+    ): Result # +
   }
 `;

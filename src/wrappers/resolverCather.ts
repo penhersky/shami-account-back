@@ -14,7 +14,7 @@ export default async (
 
     return resolver();
   } catch (error) {
-    logError(error?.message || 'Server Error');
+    logError(error);
     return error;
   }
 };
