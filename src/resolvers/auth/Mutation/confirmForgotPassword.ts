@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 
-import { User, Security, Profile, AccountType } from '../../../models';
+import { Security } from '../../../models';
 import cather from '../../../wrappers/resolverCather';
 import { registration } from '../../../lib/validation';
 import verifyToken from '../../../lib/verifyToken';
@@ -14,33 +14,29 @@ export default async (_: any, args: any) =>
       return new Error('Invalid expired!');
 
     const validationErr = await registration.password({
-      password: args.password,
+      password: args.newPassword,
     });
     if (validationErr) return new Error(validationErr[0].message);
 
-    const user = await User.findByIdAndUpdate(data?.userId, {
-      active: true,
-    });
-    if (!user) return new Error('Invalid expired!');
+    const userSecurity = await Security.findOne({ user: data?.userId });
+    if (!userSecurity) return new Error('Invalid expired!');
+
+    const comparedPasswords = await bcrypt.compare(
+      args.newPassword,
+      userSecurity.password,
+    );
+    if (comparedPasswords)
+      return new Error('The old password is the same as the new one');
 
     const salt = await bcrypt.genSalt(Number(SALT));
     const hashPassword = await bcrypt.hash(args.password, salt);
 
-    await Security.create({
-      user: user.id,
+    await userSecurity.updateOne({
       password: hashPassword,
-    });
-
-    await Profile.create({
-      user: user.id,
-    });
-
-    await AccountType.create({
-      user: user.id,
     });
 
     return {
       result: 'SUCCESS',
-      message: 'Registration was successful!',
+      message: 'Password updated successfully!',
     };
   });
