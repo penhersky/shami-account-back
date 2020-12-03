@@ -1,9 +1,8 @@
 import jwt from 'jsonwebtoken';
 
-import { logWarn } from './logger';
 import { USER_TOKEN_SECURITY_KEY, ADMIN_TOKEN_SECURITY_KEY } from '../config';
 
-export default (context: any) => {
+export const isAuthUserOrAdmin = (context: any) => {
   try {
     if (context?.req?.headers['x-admin-security-token-x']) {
       const result = <string | any>(
@@ -23,9 +22,15 @@ export default (context: any) => {
       );
       if (typeof result !== 'string') return result;
     }
-    throw new Error('Access denied');
+    return 'Access denied';
   } catch (error) {
-    logWarn(error);
     return 'Access denied';
   }
+};
+
+export default (context: any) => {
+  const result = isAuthUserOrAdmin(context);
+  if (typeof result === 'string') throw new Error('Access denied');
+  if (result?.id) return result;
+  throw new Error('Access denied');
 };
