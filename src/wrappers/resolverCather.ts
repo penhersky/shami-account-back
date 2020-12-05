@@ -9,12 +9,16 @@ export default async (
     if (auth) {
       const authResult = auth(context);
       if (typeof authResult === 'string') throw new Error('Access denied');
-      return resolver(authResult);
+      const res = await resolver(authResult);
+      if (res instanceof Error) throw new Error(res.message);
+      return res;
     }
 
-    return resolver();
+    const res = await resolver();
+    if (res instanceof Error) throw new Error(res.message);
+    return res;
   } catch (error) {
-    logError(error);
+    logError(error.message, { error });
     return error;
   }
 };

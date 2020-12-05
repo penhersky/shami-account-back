@@ -9,14 +9,19 @@ export default async (
   try {
     if (auth) {
       const authResult = auth(context);
-      if (typeof authResult === 'string')
-        return fullCheck ? null : type(authResult);
-      return type(authResult);
+      if (typeof authResult === 'string') {
+        if (fullCheck) return null;
+        const res = type(authResult);
+        if (res instanceof Error) throw new Error(res.message);
+        return res;
+      }
     }
 
-    return type();
+    const res = type();
+    if (res instanceof Error) throw new Error(res.message);
+    return res;
   } catch (error) {
-    logError(error);
+    logError(error.message, { error });
     return null;
   }
 };

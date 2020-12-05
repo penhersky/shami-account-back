@@ -5,7 +5,7 @@ export default gql`
     id: ID!
     status: String!
     from: String!
-    to: String!
+    to: String
     createdAt: String
     updatedAt: String
   }

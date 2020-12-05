@@ -5,7 +5,7 @@ export default gql`
     id: ID!
     name: String!
     email: String!
-    imageId: String
+    image: String
     provider: String!
     type: userType
     active: Boolean
@@ -60,7 +60,7 @@ export default gql`
     getPerformers(paginate: Paginate): Performers! # +
   }
 
-  # extend type Mutation {
-
-  # }
+  extend type Mutation {
+    deleteUser(id: ID!): Result!
+  }
 `;
