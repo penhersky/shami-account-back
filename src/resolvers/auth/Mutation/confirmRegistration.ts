@@ -31,8 +31,12 @@ export default async (_: any, args: any) =>
       password: hashPassword,
     });
 
-    await Profile.create({
+    const profile = await Profile.create({
       user: user.id,
+    });
+
+    await user.updateOne({
+      profile: profile.id,
     });
 
     await AccountType.create({

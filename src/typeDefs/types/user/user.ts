@@ -56,11 +56,11 @@ export default gql`
     getCustomer(id: ID!): Customer! # +
     getPerformer(id: ID!): Performer! # +
     # all
-    getCustomers(paginate: Paginate): Customers! # +
-    getPerformers(paginate: Paginate): Performers! # +
+    getCustomers(paginate: Paginate!): Customers! # +
+    getPerformers(paginate: Paginate!): Performers! # +
   }
 
   extend type Mutation {
-    deleteUser(id: ID!): Result!
+    deleteUser(id: ID!): Result! # +
   }
 `;

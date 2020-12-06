@@ -2,7 +2,8 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
   type Profile {
-    id: ID
+    id: ID!
+    user: ID!
     firstName: String
     lastName: String
     middleName: String
@@ -41,13 +42,16 @@ export default gql`
 
   type Profiles {
     result: result
-    count: Int
+    totalItems: Int
+    page: Int
+    limit: Int
+    totalPages: Int
     profiles: [Profile]
   }
 
   extend type Query {
     getProfile(id: ID!): Profile!
-    getProfiles: Profiles!
+    getProfiles(paginate: Paginate!): Profiles!
   }
 
   extend type Mutation {

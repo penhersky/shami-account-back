@@ -25,7 +25,7 @@ export default async (_: any, { admin: args }: any, context: any) =>
         name: args?.name,
         imageUrl: args?.imageUrl,
         password: passwordHash,
-        state: args?.state ?? 'junior',
+        state: args?.state ?? 'moderator',
       });
 
       logInfo(`✔️ created new admin ${newAdmin.name} by ${user?.name}`);

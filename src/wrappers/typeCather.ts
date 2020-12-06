@@ -9,17 +9,11 @@ export default async (
   try {
     if (auth) {
       const authResult = auth(context);
-      if (typeof authResult === 'string') {
-        if (fullCheck) return null;
-        const res = type(authResult);
-        if (res instanceof Error) throw new Error(res.message);
-        return res;
-      }
+      if (typeof authResult === 'string')
+        return fullCheck ? null : await type(authResult);
     }
 
-    const res = type();
-    if (res instanceof Error) throw new Error(res.message);
-    return res;
+    return await type();
   } catch (error) {
     logError(error.message, { error });
     return null;

@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
+import { ProfileType } from './profile';
+
 export interface UserType extends mongoose.Document {
   name: string;
   email: string;
@@ -8,6 +10,7 @@ export interface UserType extends mongoose.Document {
   provider: string;
   type?: string;
   active?: boolean;
+  profile?: mongoose.Types.ObjectId | ProfileType;
 }
 
 const Schema = new mongoose.Schema(
@@ -41,6 +44,7 @@ const Schema = new mongoose.Schema(
       required: false,
       default: false,
     },
+    profile: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Profile' }],
   },
   {
     timestamps: true,

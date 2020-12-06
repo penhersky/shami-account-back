@@ -30,7 +30,10 @@ export default gql`
 
   type Admins {
     result: result
-    count: Int
+    totalItems: Int
+    page: Int
+    limit: Int
+    totalPages: Int
     admins: [Admin]
   }
 
@@ -44,8 +47,8 @@ export default gql`
 
   extend type Query {
     getAdmin(id: ID!): Admin!
-    getAdmins: Admins!
-    adminLogin(email: String, password: String): AdminLogin!
+    getAdmins(paginate: Paginate!): Admins!
+    adminLogin(email: String!, password: String!): AdminLogin!
   }
 
   extend type Mutation {
