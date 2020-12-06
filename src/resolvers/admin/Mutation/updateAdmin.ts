@@ -5,10 +5,10 @@ import cather from '../../../wrappers/resolverCather';
 import auth, { highSecurityCheck } from '../../../lib/checkAuthAdmin';
 import { logInfo } from '../../../lib/logger';
 
-export default async (_: any, { admin: args }: any, context: any) =>
+export default async (_: any, { id, admin: args }: any, context: any) =>
   cather(
     async (user: any) => {
-      const admin = await Admin.findById(args.id);
+      const admin = await Admin.findById(id);
 
       if (!admin) throw new Error('Such administrator does`t exist!');
 
@@ -23,11 +23,8 @@ export default async (_: any, { admin: args }: any, context: any) =>
       const updatedAdmin = await Admin.findByIdAndUpdate(
         admin?.id,
         {
-          name: args?.name ?? admin.name,
-          email: args?.email ?? admin.email,
-          imageUrl: args?.imageUrl ?? admin.imageUrl,
+          ...args,
           password: args?.password ? passwordHash : admin?.password,
-          state: args?.state ?? admin?.state,
         },
         { new: true },
       );

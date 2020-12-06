@@ -50,13 +50,14 @@ export default gql`
   }
 
   extend type Query {
-    getProfile(id: ID!): Profile!
-    getProfiles(paginate: Paginate!): Profiles!
+    getProfile(id: ID!): Profile! # +
+    getProfiles(paginate: Paginate!): Profiles! # +
   }
 
   extend type Mutation {
     # Only admins
-    updateProfile(profile: UpdateProfile!): Result!
+    updateProfile(id: ID!, profile: UpdateProfile!): Profile!
+    deleteProfile(id: ID!): Result!
 
     # Only owner
     updateFullName(fullName: UpdateFullName!): Result!

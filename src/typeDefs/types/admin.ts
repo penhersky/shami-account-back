@@ -53,7 +53,7 @@ export default gql`
 
   extend type Mutation {
     addAdmin(admin: CreateAdmin!): Admin!
-    updateAdmin(admin: UpdateAdmin!): Admin!
+    updateAdmin(id: ID!, admin: UpdateAdmin!): Admin!
     deleteAdmins(idArr: [ID!]!): Result!
   }
 `;
