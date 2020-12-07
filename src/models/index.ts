@@ -1,6 +1,6 @@
 import { UserType } from './user';
 import { TAccountType as AccountType } from './accountType';
-import { Security } from './security';
+import { SecurityT } from './security';
 import { ProfileType } from './profile';
 import { Contact } from './contact';
 import { AdminType } from './admin';
@@ -15,7 +15,7 @@ export { default as Admin } from './admin';
 
 export type TUser = UserType;
 export type TAccountType = AccountType;
-export type TSecurity = Security;
+export type TSecurity = SecurityT;
 export type TProfile = ProfileType;
 export type TContact = Contact;
 

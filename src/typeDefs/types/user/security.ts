@@ -17,17 +17,24 @@ export default gql`
 
   type Securitys {
     result: result
-    count: Int
+    totalItems: Int
+    page: Int
+    limit: Int
+    totalPages: Int
     Securitys: [Security]
   }
 
   extend type Query {
     # Only admins
     getSecurity(id: ID!): Security!
-    getSecuritys: Securitys!
+    getSecuritys(paginate: Paginate!): Securitys!
   }
 
   extend type Mutation {
+    # only admins
+    deleteSecuritys(idArr: [ID!]!): Result!
+    updateSecurity(id: ID!, profile: UpdateProfile!): Profile!
+
     # only owner
     updatePassword(password: UpdatePassword): Result!
   }
