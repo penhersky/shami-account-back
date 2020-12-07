@@ -1,5 +1,5 @@
 import { UserType } from './user';
-import { AccountType } from './accountType';
+import { TAccountType as AccountType } from './accountType';
 import { Security } from './security';
 import { ProfileType } from './profile';
 import { Contact } from './contact';

@@ -1,11 +1,11 @@
-import { Profile } from '../../../../models';
+import { AccountType } from '../../../../models';
 import cather from '../../../../wrappers/resolverCather';
 import auth from '../../../../lib/checkAuthAdmin';
 
 export default async (_: any, args: any, context: any) =>
   cather(
     async () => {
-      await Profile.deleteMany({
+      await AccountType.deleteMany({
         _id: {
           $in: args?.idArr,
         },
@@ -13,7 +13,7 @@ export default async (_: any, args: any, context: any) =>
 
       return {
         result: 'SUCCESS',
-        message: 'Profile deleted successful!',
+        message: 'AccountType deleted successful!',
       };
     },
     context,

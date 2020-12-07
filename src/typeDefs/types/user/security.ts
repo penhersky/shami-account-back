@@ -2,8 +2,8 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
   type Security {
-    id: ID
-    user: ID
+    id: ID!
+    user: ID!
     accessToken: String
     refreshToken: String
     createdAt: String

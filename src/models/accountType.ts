@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
-export interface AccountType extends mongoose.Document {
+export interface TAccountType extends mongoose.Document {
   user: string;
   status?: string;
 
@@ -8,33 +9,40 @@ export interface AccountType extends mongoose.Document {
   to?: string;
 }
 
-const Account = mongoose.model<AccountType>(
-  'AccountType',
-  new mongoose.Schema(
-    {
-      user: {
-        type: mongoose.Types.ObjectId,
-        ref: 'User',
-      },
-      status: {
-        type: String,
-        required: false,
-        default: 'default',
-      },
-      from: {
-        type: Date,
-        required: false,
-        default: Date.now,
-      },
-      to: {
-        type: Date,
-        required: false,
-      },
+const Schema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Types.ObjectId,
+      ref: 'User',
     },
-    {
-      timestamps: true,
+    status: {
+      type: String,
+      required: false,
+      default: 'default',
     },
-  ),
+    from: {
+      type: Date,
+      required: false,
+      default: Date.now,
+    },
+    to: {
+      type: Date,
+      required: false,
+    },
+  },
+  {
+    timestamps: true,
+  },
 );
 
-export default Account;
+Schema.plugin(mongoosePaginate);
+
+interface Account<T extends mongoose.Document>
+  extends mongoose.PaginateModel<T> {}
+
+const Model: Account<TAccountType> = mongoose.model<TAccountType>(
+  'AccountType',
+  Schema,
+) as Account<TAccountType>;
+
+export default Model;

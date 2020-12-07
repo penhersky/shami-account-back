@@ -57,7 +57,7 @@ export default gql`
   extend type Mutation {
     # Only admins
     updateProfile(id: ID!, profile: UpdateProfile!): Profile!
-    deleteProfile(id: ID!): Result!
+    deleteProfiles(idArr: [ID!]!): Result!
 
     # Only owner
     updateFullName(fullName: UpdateFullName!): Result!

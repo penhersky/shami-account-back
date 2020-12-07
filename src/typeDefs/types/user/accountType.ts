@@ -18,18 +18,22 @@ export default gql`
 
   type AccountTypes {
     result: result
-    count: Int
-    accountTypes: [AccountType]
+    totalItems: Int
+    page: Int
+    limit: Int
+    totalPages: Int
+    accounttypes: [AccountType]
   }
 
   extend type Query {
     # Only admins
     getAccountType(id: ID!): AccountType!
-    getAccountTypes: AccountTypes!
+    getAccountTypes(paginate: Paginate!): AccountTypes!
   }
 
   extend type Mutation {
     # Only admins
-    updateUpdateAccountType(accountType: UpdateAccountType!): Result!
+    updateAccountType(id: ID!, accountType: UpdateAccountType!): Result!
+    deleteAccountTypes(idArr: [ID!]!): Result!
   }
 `;
