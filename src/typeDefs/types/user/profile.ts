@@ -56,14 +56,13 @@ export default gql`
 
   extend type Mutation {
     # Only admins
-    updateProfile(id: ID!, profile: UpdateProfile!): Profile!
-    deleteProfiles(idArr: [ID!]!): Result!
-
+    updateProfile(id: ID!, profile: UpdateProfile!): Profile! # +
+    deleteProfiles(idArr: [ID!]!): Result! # +
     # Only owner
-    updateFullName(fullName: UpdateFullName!): Result!
+    updateFullName(fullName: UpdateFullName!): Result! # +
     updateLocation(location: UpdateLocation!): Result!
-    updateDescription(description: String!): Result!
-    updateBirthday(birthday: String!): Result!
-    updateCategories(categories: UpdateCategories): Result!
+    updateDescription(description: String!): Result! # +
+    updateBirthday(birthday: String!): Result! # +
+    updateCategories(categories: UpdateCategories): Result! # +
   }
 `;
