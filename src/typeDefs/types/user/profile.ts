@@ -7,7 +7,7 @@ export default gql`
     firstName: String
     lastName: String
     middleName: String
-    location: String
+    location: Location
     description: String
     birthday: String
     categoriesId: [String]
@@ -30,10 +30,6 @@ export default gql`
     firstName: String
     lastName: String
     middleName: String
-  }
-
-  input UpdateLocation {
-    location: String!
   }
 
   input UpdateCategories {
@@ -60,7 +56,6 @@ export default gql`
     deleteProfiles(idArr: [ID!]!): Result! # +
     # Only owner
     updateFullName(fullName: UpdateFullName!): Result! # +
-    updateLocation(location: UpdateLocation!): Result!
     updateDescription(description: String!): Result! # +
     updateBirthday(birthday: String!): Result! # +
     updateCategories(categories: UpdateCategories): Result! # +

@@ -1,6 +1,12 @@
 import bcrypt from 'bcrypt';
 
-import { User, Security, Profile, AccountType } from '../../../models';
+import {
+  User,
+  Security,
+  Profile,
+  AccountType,
+  Location,
+} from '../../../models';
 import cather from '../../../wrappers/resolverCather';
 import { registration } from '../../../lib/validation';
 import verifyToken from '../../../lib/verifyToken';
@@ -36,6 +42,10 @@ export default async (_: any, args: any) =>
     });
 
     await user.updateOne({
+      profile: profile.id,
+    });
+
+    await Location.create({
       profile: profile.id,
     });
 

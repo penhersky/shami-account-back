@@ -49,6 +49,6 @@ export default gql`
     addContact(profile: ID!, contact: CreateContact!): Contact! # +
     deleteContacts(idArr: [ID!]!): Result! # +
     # owner and admins
-    updateContact(id: ID!, contact: UpdateContact!): Result! # +
+    updateContact(id: ID!, contact: UpdateContact!): Contact! # +
   }
 `;

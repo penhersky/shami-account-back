@@ -5,11 +5,13 @@ import contact from './contact';
 import security from './security';
 import accountType from './accountType';
 import profile from './profile';
+import location from './location';
 
 export default concatenateTypeDefs([
   user,
+  contact,
   profile,
   security,
+  location,
   accountType,
-  contact,
 ]);

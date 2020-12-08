@@ -5,6 +5,7 @@ import profile from './profile';
 import accountType from './accountType';
 import security from './security';
 import contact from './contacts/index';
+import location from './location';
 
 export default {
   Mutation: {
@@ -12,6 +13,7 @@ export default {
     ...profile.Mutation,
     ...contact.Mutation,
     ...security.Mutation,
+    ...location.Mutation,
     ...accountType.Mutation,
   },
   Query: {
@@ -19,6 +21,7 @@ export default {
     ...profile.Query,
     ...contact.Query,
     ...security.Query,
+    ...location.Query,
     ...accountType.Query,
   },
 };

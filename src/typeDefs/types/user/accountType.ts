@@ -33,7 +33,7 @@ export default gql`
 
   extend type Mutation {
     # Only admins
-    updateAccountType(id: ID!, accountType: UpdateAccountType!): Result!
+    updateAccountType(id: ID!, accountType: UpdateAccountType!): AccountType!
     deleteAccountTypes(idArr: [ID!]!): Result!
   }
 `;
