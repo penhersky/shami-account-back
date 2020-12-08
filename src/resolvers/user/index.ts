@@ -4,20 +4,20 @@ import * as userMutation from './userMutation';
 import profile from './profile';
 import accountType from './accountType';
 import security from './security';
-
-import addContact from './contacts/addContact';
+import contact from './contacts/index';
 
 export default {
   Mutation: {
-    addContact,
     ...userMutation,
     ...profile.Mutation,
+    ...contact.Mutation,
     ...security.Mutation,
     ...accountType.Mutation,
   },
   Query: {
     ...UserQuery,
     ...profile.Query,
+    ...contact.Query,
     ...security.Query,
     ...accountType.Query,
   },

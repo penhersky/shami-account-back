@@ -50,8 +50,8 @@ export default gql`
 
   extend type Query {
     # user
-    getAccount: AccountRes!
-    getUser(id: ID!): User!
+    getAccount: AccountRes! # +
+    getUser(id: ID!): User! # +
     # admin
     getCustomer(id: ID!): Customer! # +
     getPerformer(id: ID!): Performer! # +

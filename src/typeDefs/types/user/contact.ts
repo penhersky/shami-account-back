@@ -28,21 +28,27 @@ export default gql`
 
   type Contacts {
     result: result
-    count: Int
+    totalItems: Int
+    page: Int
+    limit: Int
+    totalPages: Int
     Contacts: [Contacts]
   }
 
   extend type Query {
     # Only admins
-    getContacts(id: ID!): Contacts!
-    getContact: Contact!
+    getContacts(paginate: Paginate!): Contacts! # +
+    getContact(id: ID!): Contact! # +
   }
 
   extend type Mutation {
-    # only owner
-    addContact(contact: CreateContact!): Contact!
+    # user
+    addProfileContact(contact: CreateContact!): Contact! # +
+    deleteContact(id: ID!): Result! # +
+    # only admin
+    addContact(profile: ID!, contact: CreateContact!): Contact! # +
+    deleteContacts(idArr: [ID!]!): Result! # +
     # owner and admins
-    updateContact(contact: UpdateContact!): Result!
-    deleteContacts(idArr: [ID!]!): Result!
+    updateContact(id: ID!, contact: UpdateContact!): Result! # +
   }
 `;

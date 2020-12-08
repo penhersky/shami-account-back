@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
-export interface Contact extends mongoose.Document {
+export interface ContactType extends mongoose.Document {
   profile: string;
   show: boolean;
   name: string;
@@ -8,36 +9,42 @@ export interface Contact extends mongoose.Document {
   icon: string;
 }
 
-const ContactModel = mongoose.model<Contact>(
-  'Contact',
-  new mongoose.Schema(
-    {
-      profile: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Profile',
-      },
-      show: {
-        type: Boolean,
-        required: false,
-        default: true,
-      },
-      name: {
-        type: String,
-        required: true,
-      },
-      value: {
-        type: String,
-        required: false,
-      },
-      icon: {
-        type: String,
-        required: false,
-      },
+const Schema = new mongoose.Schema(
+  {
+    profile: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Profile',
     },
-    {
-      timestamps: true,
+    show: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
-  ),
+    name: {
+      type: String,
+      required: true,
+    },
+    value: {
+      type: String,
+      required: false,
+    },
+    icon: {
+      type: String,
+      required: false,
+    },
+  },
+  {
+    timestamps: true,
+  },
 );
 
-export default ContactModel;
+Schema.plugin(mongoosePaginate);
+interface Contact<T extends mongoose.Document>
+  extends mongoose.PaginateModel<T> {}
+
+const Model: Contact<ContactType> = mongoose.model<ContactType>(
+  'Contact',
+  Schema,
+) as Contact<ContactType>;
+
+export default Model;
