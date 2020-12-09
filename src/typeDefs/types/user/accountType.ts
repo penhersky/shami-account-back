@@ -3,6 +3,7 @@ import { gql } from 'apollo-server-express';
 export default gql`
   type AccountType {
     id: ID!
+    user: User
     status: String!
     from: String!
     to: String

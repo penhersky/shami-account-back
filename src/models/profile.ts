@@ -6,7 +6,6 @@ export interface ProfileType extends mongoose.Document {
   firstName?: string;
   lastName?: string;
   middleName?: string;
-  location?: string;
   description?: string;
   birthday?: string;
   categoriesId?: [string];
@@ -29,10 +28,6 @@ const Schema = new mongoose.Schema(
       required: false,
     },
     middleName: {
-      type: String,
-      required: false,
-    },
-    location: {
       type: String,
       required: false,
     },

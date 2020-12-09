@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-express';
 export default gql`
   type Profile {
     id: ID!
-    user: ID!
+    user: User!
     firstName: String
     lastName: String
     middleName: String

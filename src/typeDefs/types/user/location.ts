@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-express';
 export default gql`
   type Location {
     id: ID!
-    profile: ID!
+    profile: Profile
     name: String
     lat: String
     lng: String
