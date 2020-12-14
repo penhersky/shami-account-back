@@ -20,7 +20,6 @@ export default gql`
     firstName: String
     lastName: String
     middleName: String
-    location: String
     description: String
     birthday: String
     categoriesId: [String]

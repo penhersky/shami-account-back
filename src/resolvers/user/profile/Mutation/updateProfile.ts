@@ -9,7 +9,7 @@ export default async (_: any, { id, profile: args }: any, context: any) =>
 
       if (!profile) throw new Error('Such profile does`t exist!');
 
-      const updatedProfile = await Profile.findByIdAndUpdate(args.id, args, {
+      const updatedProfile = await Profile.findByIdAndUpdate(id, args, {
         new: true,
       });
 

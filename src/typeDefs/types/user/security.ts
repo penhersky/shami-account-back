@@ -15,6 +15,12 @@ export default gql`
     new: String
   }
 
+  input UpdateSecurity {
+    password: String
+    accessToken: String
+    refreshToken: String
+  }
+
   type Securitys {
     result: result
     totalItems: Int
@@ -26,16 +32,15 @@ export default gql`
 
   extend type Query {
     # Only admins
-    getSecurity(id: ID!): Security!
-    getSecuritys(paginate: Paginate!): Securitys!
+    getSecurity(id: ID!): Security! # +
+    getSecuritys(paginate: Paginate!): Securitys! # +
   }
 
   extend type Mutation {
     # only admins
-    deleteSecuritys(idArr: [ID!]!): Result!
-    updateSecurity(id: ID!, profile: UpdateProfile!): Security!
-
+    deleteSecuritys(idArr: [ID!]!): Result! # +
+    updateSecurity(id: ID!, security: UpdateSecurity!): Security! # +
     # only owner
-    updatePassword(password: UpdatePassword): Result!
+    updatePassword(password: UpdatePassword): Result! # +
   }
 `;
