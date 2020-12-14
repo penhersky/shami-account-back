@@ -1,20 +1,20 @@
 import addLocation from './Mutation/addLocation';
-import deleteLocations from './Mutation/deleteLocation';
-import updateLocation from './Mutation/updateLocation';
 import updateMyLocation from './Mutation/updateMyLocation';
 
-import getLocation from './Query/getLocation';
-import getLocations from './Query/getLocations';
+import { Location } from '../../../models';
+import { getMany, getOne } from '../../../lib/templates/get';
+import update from '../../../lib/templates/update';
+import deleteMany from '../../../lib/templates/deleteMany';
 
 export default {
   Mutation: {
     updateMyLocation,
     addLocation,
-    updateLocation,
-    deleteLocations,
+    updateLocation: update(Location, 'location'),
+    deleteLocations: deleteMany(Location, 'location'),
   },
   Query: {
-    getLocation,
-    getLocations,
+    getLocation: getOne(Location),
+    getLocations: getMany(Location, 'location'),
   },
 };

@@ -1,20 +1,22 @@
 import addProfileContact from './Mutation/addProfileContact';
 import addContact from './Mutation/addContact';
-import updateContact from './Mutation/updateContact';
-import deleteContacts from './Mutation/deleteContacts';
+import deleteContact from './Mutation/deleteContact';
 
-import getContact from './Query/getContact';
-import getContacts from './Query/getContacts';
+import { Contact } from '../../../models';
+import { getMany, getOne } from '../../../lib/templates/get';
+import update from '../../../lib/templates/update';
+import deleteMany from '../../../lib/templates/deleteMany';
 
 export default {
   Mutation: {
     addContact,
     addProfileContact,
-    updateContact,
-    deleteContacts,
+    deleteContact,
+    updateContact: update(Contact, 'contact'),
+    deleteContacts: deleteMany(Contact, 'contact'),
   },
   Query: {
-    getContact,
-    getContacts,
+    getContact: getOne(Contact),
+    getContacts: getMany(Contact, 'contact'),
   },
 };

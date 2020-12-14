@@ -1,16 +1,15 @@
-import getAccountType from './Query/getAccountType';
-import getAccountTypes from './Query/getAccountTypes';
-
-import deleteAccountTypes from './Mutation/deleteAccountTypes';
-import updateAccountType from './Mutation/updateAccountType';
+import { AccountType } from '../../../models';
+import { getMany, getOne } from '../../../lib/templates/get';
+import update from '../../../lib/templates/update';
+import deleteMany from '../../../lib/templates/deleteMany';
 
 export default {
   Query: {
-    getAccountType,
-    getAccountTypes,
+    getAccountType: getOne(AccountType),
+    getAccountTypes: getMany(AccountType, 'accounttype'),
   },
   Mutation: {
-    deleteAccountTypes,
-    updateAccountType,
+    deleteAccountTypes: deleteMany(AccountType, 'accountType'),
+    updateAccountType: update(AccountType, 'accountType'),
   },
 };

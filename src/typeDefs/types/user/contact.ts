@@ -32,7 +32,7 @@ export default gql`
     page: Int
     limit: Int
     totalPages: Int
-    Contacts: [Contacts]
+    contacts: [Contact]
   }
 
   extend type Query {
