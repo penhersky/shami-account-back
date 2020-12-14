@@ -10,7 +10,6 @@ export default async (_: any, { paginate }: any, context: any) =>
         {
           limit: paginate.limit,
           page: paginate.page,
-          select: 'id user status from to createdAt updatedAt',
           sort: { [paginate.sortKey]: paginate?.sort === 'ASC' ? 1 : -1 },
         },
       );

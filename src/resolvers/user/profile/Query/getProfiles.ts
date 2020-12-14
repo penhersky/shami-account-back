@@ -10,8 +10,6 @@ export default async (_: any, { paginate }: any, context: any) =>
         {
           limit: paginate.limit,
           page: paginate.page,
-          select:
-            'id user firstName lastName middleName location description birthday categoriesId createdAt updatedAt',
           sort: { [paginate.sortKey]: paginate?.sort === 'ASC' ? 1 : -1 },
         },
       );

@@ -5,9 +5,7 @@ import auth from '../../../lib/checkAuthAdmin';
 export default async (_: any, args: any, context: any) =>
   cather(
     async () => {
-      const user = await User.findById(args.id).select(
-        'id name email imageUrl provider type createdAt updatedAt',
-      );
+      const user = await User.findById(args.id);
       const security = await Security.findOne({ user: user?.id });
 
       return {

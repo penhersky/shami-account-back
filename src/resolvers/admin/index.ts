@@ -2,15 +2,16 @@ import addAdmin from './Mutation/addAdmin';
 import deleteAdmins from './Mutation/deleteAdmin';
 import updateAdmin from './Mutation/updateAdmin';
 
-import getAdmin from './Query/getAdmin';
-import getAdmins from './Query/getAdmins';
 import adminLogin from './Query/login';
+
+import { getMany, getOne } from '../../lib/templates/get';
+import { Admin } from '../../models';
 
 export default {
   Query: {
     adminLogin,
-    getAdmin,
-    getAdmins,
+    getAdmin: getOne(Admin),
+    getAdmins: getMany(Admin, 'admin'),
   },
   Mutation: {
     addAdmin,

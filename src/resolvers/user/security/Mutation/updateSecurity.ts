@@ -24,7 +24,7 @@ export default async (_: any, { id, security: args }: any, context: any) =>
         {
           new: true,
         },
-      ).select('id password accessToken refreshToken createdAt updatedAt');
+      );
     },
     context,
     auth,
