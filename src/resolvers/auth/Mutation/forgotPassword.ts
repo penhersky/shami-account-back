@@ -16,6 +16,7 @@ export default async (_: any, args: any) =>
 
     return {
       result: 'SUCCESS',
+      redirectTo: '/forgot/password/step2',
       message: 'Registration was successful!',
     };
   });

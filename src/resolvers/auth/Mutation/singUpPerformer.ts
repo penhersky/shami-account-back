@@ -23,6 +23,7 @@ export default async (_: any, args: any) =>
         message: 'User with this email already exists',
         key: 'email-exist',
         fields: ['email'],
+        redirectTo: '/singIn/step1',
       };
 
     const newUser =
@@ -39,6 +40,7 @@ export default async (_: any, args: any) =>
 
     return {
       result: 'SUCCESS',
+      redirectTo: '/singUp/step2',
       message: 'An email with a verified link has been sent',
     };
   });

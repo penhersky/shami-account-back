@@ -37,6 +37,7 @@ export default async (_: any, args: any) =>
 
     return {
       result: 'SUCCESS',
+      redirectTo: '/singIn/step1',
       message: 'Password updated successfully!',
     };
   });

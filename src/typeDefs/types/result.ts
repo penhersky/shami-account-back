@@ -14,4 +14,11 @@ export default gql`
     key: String
     fields: [String]
   }
+
+  type LoginResult {
+    result: result!
+    status: string!
+    redirectTo: String
+    token: string
+  }
 `;

@@ -17,7 +17,11 @@ export default async (_: any, args: any) =>
   cather(async () => {
     const data = verifyToken(args.token, String(USER_TOKEN_SECURITY_KEY));
     if (typeof data === 'string' || Number(data?.expiresIn) < Date.now())
-      return new Error('Invalid expired!');
+      return {
+        result: 'ERROR',
+        message: 'Invalid expired!',
+        redirectTo: '/singUp/step1',
+      };
 
     const validationErr = await registration.password({
       password: args.password,
@@ -27,7 +31,12 @@ export default async (_: any, args: any) =>
     const user = await User.findByIdAndUpdate(data?.userId, {
       active: true,
     });
-    if (!user) return new Error('Invalid expired!');
+    if (!user)
+      return {
+        result: 'ERROR',
+        message: 'Invalid expired!',
+        redirectTo: '/singUp/step1',
+      };
 
     const salt = await bcrypt.genSalt(Number(SALT));
     const hashPassword = await bcrypt.hash(args.password, salt);
