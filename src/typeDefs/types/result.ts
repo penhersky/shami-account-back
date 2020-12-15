@@ -4,21 +4,22 @@ export default gql`
   type Result {
     result: result!
     message: String!
+    status: Int
     redirectTo: String
   }
   type FormResult {
     result: result!
     message: String!
+    status: Int!
     redirectTo: String
     value: String
-    key: String
     fields: [String]
   }
 
   type LoginResult {
     result: result!
-    status: string!
+    status: Int!
     redirectTo: String
-    token: string
+    token: String
   }
 `;

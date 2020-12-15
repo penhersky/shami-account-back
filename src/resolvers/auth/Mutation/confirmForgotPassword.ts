@@ -11,7 +11,11 @@ export default async (_: any, args: any) =>
   cather(async () => {
     const data = verifyToken(args.token, String(USER_TOKEN_SECURITY_KEY));
     if (typeof data === 'string' || Number(data?.expiresIn) < Date.now())
-      return new Error('Invalid expired!');
+      return {
+        result: 'ERROR',
+        status: 48,
+        message: 'Invalid expired!',
+      };
 
     const validationErr = await registration.password({
       password: args.newPassword,
@@ -19,14 +23,23 @@ export default async (_: any, args: any) =>
     if (validationErr) return new Error(validationErr[0].message);
 
     const userSecurity = await Security.findOne({ user: data?.userId });
-    if (!userSecurity) return new Error('Invalid expired!');
+    if (!userSecurity)
+      return {
+        result: 'ERROR',
+        status: 48,
+        message: 'Invalid expired!',
+      };
 
     const comparedPasswords = await bcrypt.compare(
       args.newPassword,
       userSecurity.password,
     );
     if (comparedPasswords)
-      return new Error('The old password is the same as the new one');
+      return {
+        result: 'ERROR',
+        status: 454,
+        message: 'The old password is the same as the new one!',
+      };
 
     const salt = await bcrypt.genSalt(Number(SALT));
     const hashPassword = await bcrypt.hash(args.password, salt);
@@ -37,6 +50,7 @@ export default async (_: any, args: any) =>
 
     return {
       result: 'SUCCESS',
+      status: 21,
       redirectTo: '/singIn/step1',
       message: 'Password updated successfully!',
     };

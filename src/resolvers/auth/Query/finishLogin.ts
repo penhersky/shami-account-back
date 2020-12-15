@@ -11,13 +11,17 @@ export default async (_: any, args: any) =>
   cather(async () => {
     const data = verifyToken(args.token, String(USER_TOKEN_SECURITY_KEY));
     if (typeof data === 'string' || Number(data?.expiresIn) < Date.now())
-      return new Error('Time for authorization has expired!');
+      return {
+        result: 'ERROR',
+        status: 48,
+        redirectTo: '/singUn/step1',
+      };
 
     const user = await User.findOne({ _id: data.id, email: data.email });
     if (!user || !user.active)
       return {
         result: 'ERROR',
-        status: 'USER NOT EXIST OR NOT ACTIVE',
+        status: 42,
         redirectTo: '/singUn/step1',
       };
 
@@ -31,7 +35,7 @@ export default async (_: any, args: any) =>
     if (!result)
       return {
         result: 'ERROR',
-        status: 'BAD PASSWORD',
+        status: 45,
       };
 
     const token = jwt.sign(
@@ -45,6 +49,6 @@ export default async (_: any, args: any) =>
     return {
       result: 'SUCCESS',
       token,
-      status: 'OK!',
+      status: 10,
     };
   });

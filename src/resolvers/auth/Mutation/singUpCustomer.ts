@@ -12,7 +12,7 @@ export default async (_: any, args: any) =>
         result: 'ERROR',
         message: validationErr[0].message,
         value: validationErr[0].context?.value,
-        key: `${validationErr[0].context?.key}-error`,
+        status: 45,
         fields: validationErr[0].path,
       };
 
@@ -21,7 +21,7 @@ export default async (_: any, args: any) =>
       return {
         result: 'ERROR',
         message: 'User with this email already exists',
-        key: 'email-exist',
+        status: 44,
         fields: ['email'],
         redirectTo: '/singIn/step1',
       };
@@ -41,6 +41,7 @@ export default async (_: any, args: any) =>
     return {
       result: 'SUCCESS',
       redirectTo: '/singUp/step2',
+      status: 20,
       message: 'An email with a verified link has been sent',
     };
   });

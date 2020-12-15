@@ -10,14 +10,14 @@ export default async (_: any, args: any) =>
     if (!user || !user.active)
       return {
         result: 'ERROR',
-        status: 'USER NOT EXIST OR NOT ACTIVE',
+        status: 42,
         redirectTo: '/singUn/step1',
       };
 
     if (user.provider !== 'email')
       return {
         result: 'ERROR',
-        status: 'OTHER PROVIDER',
+        status: 41,
         redirectTo: '/singIn/providers',
       };
 
@@ -34,7 +34,7 @@ export default async (_: any, args: any) =>
 
     return {
       result: 'SUCCESS',
-      status: 'OK',
+      status: 10,
       redirectTo: '/login/step2',
       token,
     };

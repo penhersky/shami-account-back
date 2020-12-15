@@ -19,6 +19,7 @@ export default async (_: any, args: any) =>
     if (typeof data === 'string' || Number(data?.expiresIn) < Date.now())
       return {
         result: 'ERROR',
+        status: 48,
         message: 'Invalid expired!',
         redirectTo: '/singUp/step1',
       };
@@ -31,9 +32,10 @@ export default async (_: any, args: any) =>
     const user = await User.findByIdAndUpdate(data?.userId, {
       active: true,
     });
-    if (!user)
+    if (!user || user.active)
       return {
         result: 'ERROR',
+        status: 48,
         message: 'Invalid expired!',
         redirectTo: '/singUp/step1',
       };
@@ -64,6 +66,7 @@ export default async (_: any, args: any) =>
 
     return {
       result: 'SUCCESS',
+      status: 20,
       message: 'Registration was successful!',
     };
   });
