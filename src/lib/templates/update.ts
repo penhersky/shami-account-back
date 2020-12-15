@@ -12,7 +12,7 @@ export default (Model: any, key: string) => async (
 
       if (!element) throw new Error(`Such ${key} does\`t exist!`);
 
-      return Model.findByIdAndUpdate(args.id, args, {
+      return Model.findByIdAndUpdate(element.id, args, {
         new: true,
       });
     },

@@ -17,7 +17,7 @@ export default gql`
   }
 
   extend type Query {
-    getSettings: [AppSettings]!
+    getSettings(id: ID!): AppSettings!
   }
 
   extend type Mutation {

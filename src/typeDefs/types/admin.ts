@@ -20,7 +20,6 @@ export default gql`
   }
 
   input UpdateAdmin {
-    id: ID!
     name: String
     email: String
     imageUrl: String
