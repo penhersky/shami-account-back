@@ -1,4 +1,5 @@
 import Auth from './auth';
+import AppSettings from './AppSettings';
 import Admin from './admin';
 import User from './user';
 
@@ -9,11 +10,13 @@ export default {
     ...Auth.Query,
     ...Admin.Query,
     ...User.Query,
+    ...AppSettings.Query,
   },
   Mutation: {
     ...Auth.Mutation,
     ...Admin.Mutation,
     ...User.Mutation,
+    ...AppSettings.Mutation,
   },
   ...types,
 };

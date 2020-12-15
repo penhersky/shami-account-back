@@ -5,5 +5,13 @@ import params from './params';
 import enums from './enums';
 import admin from './admin';
 import user from './user';
+import setting from './setting';
 
-export default concatenateTypeDefs([result, enums, params, admin, user]);
+export default concatenateTypeDefs([
+  result,
+  enums,
+  params,
+  admin,
+  setting,
+  user,
+]);
