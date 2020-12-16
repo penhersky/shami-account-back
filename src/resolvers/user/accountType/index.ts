@@ -10,6 +10,6 @@ export default {
   },
   Mutation: {
     deleteAccountTypes: deleteMany(AccountType, 'accountType'),
-    updateAccountType: update(AccountType, 'accountType'),
+    updateAccountType: update(AccountType, 'accounttype'),
   },
 };

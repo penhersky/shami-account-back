@@ -14,7 +14,7 @@ export default gql`
   input UpdateAccountType {
     status: String!
     from: String!
-    to: String!
+    to: String
   }
 
   type AccountTypes {
@@ -34,7 +34,7 @@ export default gql`
 
   extend type Mutation {
     # Only admins
-    updateAccountType(id: ID!, accountType: UpdateAccountType!): AccountType!
+    updateAccountType(id: ID!, accounttype: UpdateAccountType!): AccountType!
     deleteAccountTypes(idArr: [ID!]!): Result!
   }
 `;

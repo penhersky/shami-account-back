@@ -13,12 +13,15 @@ export default async (_: any, { id, security: args }: any, context: any) =>
       if (!security) throw new Error('Such security does`t exist!');
 
       const salt = await bcrypt.genSalt(Number(SALT));
-      const hashPassword = await bcrypt.hash(args.password, salt);
+      const hashPassword =
+        args.password && (await bcrypt.hash(args.password, salt));
+
+      const { password, ...rest } = args;
 
       return Security.findByIdAndUpdate(
-        args.id,
+        security.id,
         {
-          ...args,
+          ...rest,
           password: hashPassword,
         },
         {

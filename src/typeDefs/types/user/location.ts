@@ -33,14 +33,14 @@ export default gql`
   }
 
   extend type Query {
-    getLocation(id: ID!): Security!
+    getLocation(id: ID!): Location!
     getLocations(paginate: Paginate!): Locations!
   }
 
   extend type Mutation {
     addLocation(profile: ID!, location: CreateLocation): Result!
     deleteLocations(idArr: [ID!]!): Result!
-    updateLocation(id: ID!, location: UpdateLocation!): Result!
+    updateLocation(id: ID!, location: UpdateLocation!): Location!
     # user
     updateMyLocation(location: UpdateLocation!): Result!
   }
