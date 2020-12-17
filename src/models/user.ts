@@ -6,7 +6,6 @@ import { ProfileType } from './profile';
 export interface UserType extends mongoose.Document {
   name: string;
   email: string;
-  imageId?: string;
   provider: string;
   type?: string;
   active?: boolean;
@@ -24,11 +23,6 @@ const Schema = new mongoose.Schema(
       required: true,
       indexes: true,
       unique: true,
-    },
-    imageId: {
-      type: mongoose.Types.ObjectId,
-      ref: 'Image',
-      required: false,
     },
     provider: {
       type: String,

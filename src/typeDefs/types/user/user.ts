@@ -5,7 +5,7 @@ export default gql`
     id: ID!
     name: String!
     email: String!
-    image: String
+    images: [Image]
     provider: String!
     type: userType
     active: Boolean

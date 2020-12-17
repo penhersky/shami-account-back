@@ -6,10 +6,12 @@ import accountType from './accountType';
 import security from './security';
 import contact from './contacts/index';
 import location from './location';
+import image from './image';
 
 export default {
   Mutation: {
     ...userMutation,
+    ...image.Mutation,
     ...profile.Mutation,
     ...contact.Mutation,
     ...security.Mutation,
@@ -18,6 +20,7 @@ export default {
   },
   Query: {
     ...UserQuery,
+    ...image.Query,
     ...profile.Query,
     ...contact.Query,
     ...security.Query,

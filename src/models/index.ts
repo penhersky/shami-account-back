@@ -6,6 +6,7 @@ import { ContactType } from './contact';
 import { LocationT } from './location';
 import { AdminType } from './admin';
 import { SettingsT } from './appSetting';
+import { ImageT } from './image';
 
 export { default as User } from './user';
 export { default as AccountType } from './accountType';
@@ -13,6 +14,7 @@ export { default as Security } from './security';
 export { default as Profile } from './profile';
 export { default as Contact } from './contact';
 export { default as Location } from './location';
+export { default as Image } from './image';
 
 export { default as AppSetting } from './appSetting';
 export { default as Admin } from './admin';
@@ -23,6 +25,7 @@ export type TSecurity = SecurityT;
 export type TProfile = ProfileType;
 export type TContact = ContactType;
 export type TLocation = LocationT;
+export type TImage = ImageT;
 
 export type TSettings = SettingsT;
 export type TAdmin = AdminType;
