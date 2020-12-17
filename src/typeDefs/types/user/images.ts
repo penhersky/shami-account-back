@@ -27,9 +27,9 @@ export default gql`
   }
 
   input UpdateImage {
-    Etag: String!
-    Key: String!
-    Location: String!
+    Etag: String
+    Key: String
+    Location: String
     active: Boolean
   }
 

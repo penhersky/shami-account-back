@@ -43,6 +43,14 @@ export default gql`
     performers: [User]
   }
 
+  input UpdateUser {
+    name: String!
+    email: String!
+    provider: String!
+    type: userType
+    active: Boolean
+  }
+
   type AccountRes {
     user: User
     admin: Admin
@@ -61,6 +69,7 @@ export default gql`
   }
 
   extend type Mutation {
+    updateUser(id: ID!, user: UpdateUser!): User! # +
     deleteUser(id: ID!): Result! # +
   }
 `;

@@ -1,4 +1,11 @@
-import { User, AccountType, Profile, Security, Contact } from '../../../models';
+import {
+  User,
+  AccountType,
+  Profile,
+  Security,
+  Contact,
+  Image,
+} from '../../../models';
 import cather from '../../../wrappers/resolverCather';
 import auth from '../../../lib/checkAuth';
 import { logInfo } from '../../../lib/logger';
@@ -23,6 +30,7 @@ export default async (_: any, args: any, context: any) =>
         const profile = await Profile.findByIdAndDelete({ user: user?.id });
 
         await Contact.deleteMany({ profile: profile?.id });
+        await Image.deleteMany({ user: user?.id });
       }
 
       logInfo(`❗️🗑 deleted user ${user?.email} by ${authUser?.email}`);

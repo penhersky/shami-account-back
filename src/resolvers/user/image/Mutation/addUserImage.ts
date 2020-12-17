@@ -21,6 +21,9 @@ export default async (_: any, { image }: any, context: any) =>
         filename,
       });
 
+      if (image.active)
+        await Image.updateMany({ user: owner.id }, { active: false });
+
       return Image.create({
         user: owner.id,
         active: image?.active,
