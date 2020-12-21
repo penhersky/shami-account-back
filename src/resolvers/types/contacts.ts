@@ -1,5 +1,5 @@
-import profile from './_global/profile';
+import user from './_global/user';
 
 export default {
-  profile: profile.getProfileByRootRef,
+  user: user.getUserByRootRef,
 };

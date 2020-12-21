@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-express';
 export default gql`
   type Contact {
     id: ID!
-    profile: Profile
+    user: User
     name: String
     value: String
     icon: String

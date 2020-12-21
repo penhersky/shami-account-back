@@ -9,8 +9,7 @@ export default async (_: any, args: any, context: any) =>
 
       if (!contact) throw new Error('Bad request!');
 
-      if (user.profileId === contact?.profile)
-        throw new Error('Access denied!');
+      if (user.id === contact?.user) throw new Error('Access denied!');
 
       await contact?.deleteOne();
 

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
 export interface ContactType extends mongoose.Document {
-  profile: string;
+  user: string;
   show: boolean;
   name: string;
   value: string;
@@ -11,9 +11,9 @@ export interface ContactType extends mongoose.Document {
 
 const Schema = new mongoose.Schema(
   {
-    profile: {
+    user: {
       type: mongoose.Types.ObjectId,
-      ref: 'Profile',
+      ref: 'User',
     },
     show: {
       type: Boolean,

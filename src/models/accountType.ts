@@ -37,6 +37,8 @@ const Schema = new mongoose.Schema(
 
 Schema.plugin(mongoosePaginate);
 
+Schema.index({ '$**': 'text' });
+
 interface Account<T extends mongoose.Document>
   extends mongoose.PaginateModel<T> {}
 

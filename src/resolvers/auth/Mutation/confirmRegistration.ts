@@ -1,12 +1,6 @@
 import bcrypt from 'bcrypt';
 
-import {
-  User,
-  Security,
-  Profile,
-  AccountType,
-  Location,
-} from '../../../models';
+import { User, Security, AccountType, Location } from '../../../models';
 import cather from '../../../wrappers/resolverCather';
 import { registration } from '../../../lib/validation';
 import verifyToken from '../../../lib/verifyToken';
@@ -48,19 +42,15 @@ export default async (_: any, args: any) =>
       password: hashPassword,
     });
 
-    const profile = await Profile.create({
+    const accountType = await AccountType.create({
       user: user.id,
     });
 
     await user.updateOne({
-      profile: profile.id,
+      accountType: accountType.id,
     });
 
     await Location.create({
-      profile: profile.id,
-    });
-
-    await AccountType.create({
       user: user.id,
     });
 

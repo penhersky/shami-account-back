@@ -1,15 +1,15 @@
-import { Location, Profile } from '../../../../models';
+import { Location, User } from '../../../../models';
 import cather from '../../../../wrappers/resolverCather';
 import auth from '../../../../lib/checkAuthAdmin';
 
-export default async (_: any, { profile: id, location }: any, context: any) =>
+export default async (_: any, { user: id, location }: any, context: any) =>
   cather(
     async () => {
-      const profile = await Profile.findById(id);
-      if (!profile) return new Error('Bad Request');
+      const user = await User.findById(id);
+      if (!user) return new Error('Bad Request');
 
       return Location.create({
-        profile: profile.id,
+        user: user.id,
         ...location,
       });
     },

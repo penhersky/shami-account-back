@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
-import { ProfileType } from './profile';
+import { TAccountType } from './accountType';
 
 export interface UserType extends mongoose.Document {
   name: string;
@@ -9,8 +9,16 @@ export interface UserType extends mongoose.Document {
   provider: string;
   type?: string;
   active?: boolean;
-  profile?: mongoose.Types.ObjectId | ProfileType;
+  firstName?: string;
+  lastName?: string;
+  middleName?: string;
+  description?: string;
+  birthday?: string;
+  categoriesId?: [string];
+  accountType?: mongoose.Types.ObjectId | TAccountType;
 }
+
+const maxLength = (val: Array<string>) => val.length < 3;
 
 const Schema = new mongoose.Schema(
   {
@@ -38,12 +46,44 @@ const Schema = new mongoose.Schema(
       required: false,
       default: false,
     },
-    profile: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Profile' }],
+    firstName: {
+      type: String,
+      required: false,
+    },
+    lastName: {
+      type: String,
+      required: false,
+    },
+    middleName: {
+      type: String,
+      required: false,
+    },
+    description: {
+      type: String,
+      required: false,
+    },
+    birthday: {
+      type: Date,
+      required: false,
+    },
+    fonImageId: {
+      type: String,
+      required: false,
+    },
+    categoriesId: {
+      type: [String],
+      required: false,
+      validate: [maxLength, '{PATH} length must be 3 or less'],
+      default: [],
+    },
+    accountType: { type: mongoose.Schema.Types.ObjectId, ref: 'AccountType' },
   },
   {
     timestamps: true,
   },
 );
+
+Schema.index({ '$**': 'text' });
 
 Schema.plugin(mongoosePaginate);
 

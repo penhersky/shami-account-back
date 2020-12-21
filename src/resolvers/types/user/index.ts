@@ -1,9 +1,11 @@
-import profile from './profile';
 import accountType from './accountType';
 import images from './image';
+import contacts from './contacts';
+import location from './location';
 
 export default {
   images,
-  profile,
   accountType,
+  contacts,
+  location,
 };

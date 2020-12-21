@@ -1,7 +1,6 @@
 import UserQuery from './userQuery';
 import * as userMutation from './userMutation';
 
-import profile from './profile';
 import accountType from './accountType';
 import security from './security';
 import contact from './contacts/index';
@@ -12,7 +11,6 @@ export default {
   Mutation: {
     ...userMutation,
     ...image.Mutation,
-    ...profile.Mutation,
     ...contact.Mutation,
     ...security.Mutation,
     ...location.Mutation,
@@ -21,7 +19,6 @@ export default {
   Query: {
     ...UserQuery,
     ...image.Query,
-    ...profile.Query,
     ...contact.Query,
     ...security.Query,
     ...location.Query,
