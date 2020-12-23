@@ -42,6 +42,11 @@ export default gql`
     images: [Image]
   }
 
+  type ResUserImage {
+    result: result
+    image: Image
+  }
+
   extend type Query {
     # Only admins
     getImages(paginate: Paginate!): Images! # +
@@ -50,7 +55,8 @@ export default gql`
 
   extend type Mutation {
     # user
-    addUserImage(image: CreateUserImage!): Image!
+    addUserImage(image: CreateUserImage!): ResUserImage! # +
+    setActiveImage(id: ID!): Result! # +
     # Only admins
     addImage(id: ID!, image: CreateImage!): Image! # +
     deleteImages(idArr: [ID!]!): Result! # +

@@ -9,7 +9,10 @@ export default async (_: any, { image }: any, context: any) =>
   cather(
     async (user: any) => {
       const owner = await User.findById(user.id);
-      if (!owner) return new Error('Bad Request');
+      if (!owner)
+        return {
+          result: 'ERROR',
+        };
 
       const { createReadStream, filename, mimetype } = await image.image;
 
@@ -24,13 +27,16 @@ export default async (_: any, { image }: any, context: any) =>
       if (image.active)
         await Image.updateMany({ user: owner.id }, { active: false });
 
-      return Image.create({
-        user: owner.id,
-        active: image?.active,
-        Location: result.data?.Location,
-        Etag: result.data?.Etag,
-        Key: result.data?.Key,
-      });
+      return {
+        result: 'SUCCESS',
+        image: await Image.create({
+          user: owner.id,
+          active: image?.active,
+          Location: result.data?.Location,
+          Etag: result.data?.Etag,
+          Key: result.data?.Key,
+        }),
+      };
     },
     context,
     auth,

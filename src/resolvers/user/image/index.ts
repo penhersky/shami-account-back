@@ -5,6 +5,7 @@ import deleteMany from '../../../lib/templates/deleteMany';
 
 import addImage from './Mutation/addImage';
 import addUserImage from './Mutation/addUserImage';
+import setActiveImage from './Mutation/setActiveImage';
 
 export default {
   Mutation: {
@@ -12,6 +13,7 @@ export default {
     addUserImage,
     updateImage: update(Image, 'image'),
     deleteImages: deleteMany(Image, 'image'),
+    setActiveImage,
   },
   Query: {
     getImage: getOne(Image),
