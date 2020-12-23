@@ -33,22 +33,13 @@ export default gql`
     security: Security # only admin
   }
 
-  type Customers {
+  type Users {
     result: result
     totalItems: Int
     page: Int
     limit: Int
     totalPages: Int
-    customers: [User]
-  }
-
-  type Performers {
-    result: result
-    totalItems: Int
-    page: Int
-    limit: Int
-    totalPages: Int
-    performers: [User]
+    users: [User]
   }
 
   input UpdateUser {
@@ -86,11 +77,13 @@ export default gql`
     # user
     getAccount: AccountRes! # +
     getUser(id: ID!): User! # +
+    getUsersByCategoryId(id: ID!, type: userType, search: String): Users! # +
+    findUsers(type: userType, search: String!): Users! # +
     # admin
     getCustomer(id: ID!): Customer! # +
     getPerformer(id: ID!): Performer! # +
-    getCustomers(paginate: Paginate!): Customers! # +
-    getPerformers(paginate: Paginate!): Performers! # +
+    getCustomers(paginate: Paginate!): Users! # +
+    getPerformers(paginate: Paginate!): Users! # +
   }
 
   extend type Mutation {

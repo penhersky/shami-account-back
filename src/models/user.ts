@@ -83,7 +83,15 @@ const Schema = new mongoose.Schema(
   },
 );
 
-Schema.index({ '$**': 'text' });
+Schema.index({
+  email: 'text',
+  name: 'text',
+  firstName: 'text',
+  lastName: 'text',
+  middleName: 'text',
+  description: 'text',
+  birthday: 'text',
+});
 
 Schema.plugin(mongoosePaginate);
 

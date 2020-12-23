@@ -20,7 +20,7 @@ export default async (_: any, { paginate }: any, context: any) =>
         page: customers.page,
         limit: customers.limit,
         totalPages: customers.totalPages,
-        customers: customers.docs,
+        users: customers.docs,
       };
     },
     context,
