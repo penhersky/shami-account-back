@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-import { Security, User, Profile } from '../../../models';
+import { Security, User } from '../../../models';
 import cather from '../../../wrappers/resolverCather';
 import verifyToken from '../../../lib/verifyToken';
 
@@ -26,7 +26,6 @@ export default async (_: any, args: any) =>
       };
 
     const security = await Security.findOne({ user: user.id });
-    const profile = await Profile.findOne({ user: user.id });
 
     const result = await bcrypt.compare(
       args.password,
@@ -39,7 +38,7 @@ export default async (_: any, args: any) =>
       };
 
     const token = jwt.sign(
-      { id: user.id, email: user.email, profileId: profile?.id },
+      { id: user.id, email: user.email },
       String(USER_TOKEN_SECURITY_KEY),
       {
         expiresIn: '31d',

@@ -38,12 +38,12 @@ export default async (_: any, args: any) =>
     const hashPassword = await bcrypt.hash(args.password, salt);
 
     await Security.create({
-      user: user.id,
+      user: String(user.id),
       password: hashPassword,
     });
 
     const accountType = await AccountType.create({
-      user: user.id,
+      user: String(user.id),
     });
 
     await user.updateOne({
@@ -51,7 +51,7 @@ export default async (_: any, args: any) =>
     });
 
     await Location.create({
-      user: user.id,
+      user: String(user.id),
     });
 
     return {

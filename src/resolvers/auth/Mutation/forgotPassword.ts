@@ -15,7 +15,7 @@ export default async (_: any, args: any) =>
         message: 'User does not exist or is not activated',
       };
 
-    const { forTitle, html, object } = forgotPassword(user.id);
+    const { forTitle, html, object } = forgotPassword(String(user.id));
     await sendEmail(forTitle, object, html, [user.email]);
 
     return {

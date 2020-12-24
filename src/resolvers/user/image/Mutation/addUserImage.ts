@@ -30,7 +30,7 @@ export default async (_: any, { image }: any, context: any) =>
       return {
         result: 'SUCCESS',
         image: await Image.create({
-          user: owner.id,
+          user: String(owner.id),
           active: image?.active,
           Location: result.data?.Location,
           Etag: result.data?.Etag,

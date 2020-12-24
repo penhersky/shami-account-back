@@ -35,7 +35,7 @@ export default async (_: any, args: any) =>
         provider: 'email',
       }));
 
-    const { forTitle, html, object } = singUp(newUser.id, 'performer');
+    const { forTitle, html, object } = singUp(String(newUser.id), 'performer');
     await sendEmail(forTitle, object, html, [newUser.email]);
 
     return {
