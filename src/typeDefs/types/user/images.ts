@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-express';
 
 export default gql`
-  scalar Upload
+  scalar UploadImage
 
   type Image {
     id: ID!
@@ -15,7 +15,7 @@ export default gql`
   }
 
   input CreateUserImage {
-    image: Upload!
+    image: UploadImage!
     active: Boolean
   }
 

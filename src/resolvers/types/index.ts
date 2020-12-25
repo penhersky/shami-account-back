@@ -4,6 +4,7 @@ import Contact from './contacts';
 import Location from './location';
 import Security from './security';
 import Image from './image';
+import Scalar from './scalar';
 
 export default {
   User,
@@ -12,4 +13,5 @@ export default {
   Contact,
   Location,
   Security,
+  ...Scalar,
 };

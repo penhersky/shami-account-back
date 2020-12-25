@@ -4,6 +4,7 @@ import { Admin } from '../../../models';
 import cather from '../../../wrappers/resolverCather';
 import auth, { highSecurityCheck } from '../../../lib/checkAuthAdmin';
 import { logInfo } from '../../../lib/logger';
+import { isProduction } from '../../../config';
 
 export default async (_: any, { admin: args }: any, context: any) =>
   cather(
@@ -34,4 +35,5 @@ export default async (_: any, { admin: args }: any, context: any) =>
     },
     context,
     auth,
+    isProduction,
   );

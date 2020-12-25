@@ -4,12 +4,15 @@ export default async (
   resolver: (user?: any) => any,
   context?: any,
   auth?: (context: any) => object | string,
+  fullCheck = true,
 ) => {
   try {
     if (auth) {
       const authResult = auth(context);
-      if (typeof authResult === 'string') throw new Error('Access denied');
-      return await resolver(authResult);
+      if (typeof authResult === 'string') {
+        if (fullCheck) throw new Error('Access denied');
+        return await resolver(authResult);
+      }
     }
 
     return await resolver();

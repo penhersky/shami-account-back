@@ -1,4 +1,11 @@
-import { User, AccountType, Security, Contact, Image } from '../../../models';
+import {
+  User,
+  AccountType,
+  Security,
+  Contact,
+  Image,
+  Location,
+} from '../../../models';
 import cather from '../../../wrappers/resolverCather';
 import auth from '../../../lib/checkAuth';
 import { logInfo } from '../../../lib/logger';
@@ -10,10 +17,10 @@ export default async (_: any, args: any, context: any) =>
 
       if (!user) throw new Error('Such user does not exist');
 
-      if (authUser.type !== 'admin' && user?.id !== authUser.id)
+      if (authUser?.type !== 'admin' && user?.id !== authUser?.id)
         throw new Error('Access denied!');
 
-      await user?.deleteOne();
+      await user.deleteOne();
 
       if (user.active) {
         await AccountType.deleteOne({ user: user?.id });
@@ -22,6 +29,7 @@ export default async (_: any, args: any, context: any) =>
 
         await Contact.deleteMany({ user: user?.id });
         await Image.deleteMany({ user: user?.id });
+        await Location.deleteMany({ user: user?.id });
       }
 
       logInfo(`❗️🗑 deleted user ${user?.email} by ${authUser?.email}`);

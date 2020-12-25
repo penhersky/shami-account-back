@@ -94,6 +94,7 @@ export default gql`
     updateCategories(categories: UpdateCategories): Result! # +
     # admin
     updateUser(id: ID!, user: UpdateUser!): User! # +
+    createUser(name: String!, email: String, password: String!): User! # +
     deleteUser(id: ID!): Result! # +
   }
 `;
