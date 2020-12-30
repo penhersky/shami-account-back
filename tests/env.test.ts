@@ -1,4 +1,4 @@
-import 'dotenv-flow/config';
+import 'dotenv/config';
 import {
   PORT,
   DB_STR_URL,

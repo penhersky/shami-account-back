@@ -8,14 +8,23 @@ export default async (
 ) => {
   try {
     if (auth) {
-      const authResult = auth(context);
-      if (typeof authResult === 'string')
-        return fullCheck ? null : await type(authResult);
+      if (auth) {
+        const authResult = auth(context);
+        if (typeof authResult === 'string') {
+          if (fullCheck) return null;
+          return await type();
+        }
+        return await type(authResult);
+      }
+      return await type();
     }
 
     return await type();
   } catch (error) {
-    logError(error.message, { error });
+    logError(error.message, {
+      name: error?.name,
+      stack: error?.stack,
+    });
     return null;
   }
 };

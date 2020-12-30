@@ -11,4 +11,7 @@ dist
 
 .env
 .env.production.local
+.env.production
 .env.development.local
+.env.development
+.env.test

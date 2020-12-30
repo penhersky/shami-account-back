@@ -1,4 +1,4 @@
-import 'dotenv-flow/config';
+import 'dotenv/config';
 import {
   createTestClient,
   ApolloServerTestClient,
@@ -90,7 +90,6 @@ describe('@ user', () => {
           id: userId,
         },
       });
-      console.log(user);
       expect(typeof user).toEqual('object');
       expect(typeof user.data).toEqual('object');
       expect(user.data.deleteUser.result).toEqual('SUCCESS');

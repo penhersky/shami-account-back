@@ -1,4 +1,4 @@
-import 'dotenv-flow/config';
+import 'dotenv/config';
 import express from 'express';
 import rateLimit from 'express-rate-limit';
 import { graphql } from 'body-parser-graphql';
