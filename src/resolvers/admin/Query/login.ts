@@ -4,7 +4,11 @@ import bcrypt from 'bcrypt';
 import { Admin } from '../../../models';
 import { logError, logWarn } from '../../../lib/logger';
 import { login } from '../../../lib/validation';
-import { ADMIN_TOKEN_SECURITY_KEY } from '../../../config';
+import {
+  ADMIN_TOKEN_SECURITY_KEY,
+  isDevelopment,
+  ACCESS_SERVICE_SECURITY_TOKEN_KEY,
+} from '../../../config';
 
 export default async (_: any, args: any) => {
   try {
@@ -55,7 +59,15 @@ export default async (_: any, args: any) => {
       },
       String(ADMIN_TOKEN_SECURITY_KEY),
       {
-        expiresIn: '1d',
+        expiresIn: isDevelopment ? '31d' : '3d',
+      },
+    );
+
+    const serviceToken = jwt.sign(
+      { id: admin?.id, status: admin?.state, type: 'admin' },
+      String(ACCESS_SERVICE_SECURITY_TOKEN_KEY),
+      {
+        expiresIn: isDevelopment ? '31d' : '3d',
       },
     );
 
@@ -63,6 +75,7 @@ export default async (_: any, args: any) => {
       result: 'SUCCESS',
       admin,
       token,
+      serviceToken,
     };
   } catch (error) {
     logError(error);

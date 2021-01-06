@@ -7,6 +7,6 @@
 - TypeScript
 - Node.js
 - Apollo GraphQL
-- Sequelize(mysql)
+- Mongodb(Mongoose)
 
 [Borsch](https://github.com/penhersky/shani-borsch)

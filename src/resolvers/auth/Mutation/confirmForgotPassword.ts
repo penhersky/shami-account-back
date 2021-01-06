@@ -42,7 +42,7 @@ export default async (_: any, args: any) =>
       };
 
     const salt = await bcrypt.genSalt(Number(SALT));
-    const hashPassword = await bcrypt.hash(args.password, salt);
+    const hashPassword = await bcrypt.hash(args.newPassword, salt);
 
     await userSecurity.updateOne({
       password: hashPassword,

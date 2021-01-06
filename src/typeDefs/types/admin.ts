@@ -42,6 +42,7 @@ export default gql`
     redirectTo: String
     admin: Admin
     token: String
+    serviceToken: String
   }
 
   extend type Query {
