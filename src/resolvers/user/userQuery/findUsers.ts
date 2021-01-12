@@ -7,6 +7,7 @@ export default async (_: any, args: any, context: any) =>
     async () => {
       const users = await User.paginate({
         type: args?.type,
+        deleted: false,
         $text: { $search: args.search },
       });
       return {

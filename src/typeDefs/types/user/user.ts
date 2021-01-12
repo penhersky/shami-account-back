@@ -19,6 +19,7 @@ export default gql`
     contacts: [Contact]
     location: Location
     accountType: AccountType
+    deleted: Boolean
     createdAt: String
     updatedAt: String
   }
@@ -57,10 +58,17 @@ export default gql`
   }
 
   type AccountRes {
+    result: result
     user: User
     admin: Admin
     userToken: String
     adminToken: String
+  }
+
+  type UserRes {
+    result: result
+    status: Int
+    user: User
   }
 
   input UpdateFullName {
@@ -76,7 +84,7 @@ export default gql`
   extend type Query {
     # user
     getAccount: AccountRes! # +
-    getUser(id: ID!): User! # +
+    getUser(id: ID!): UserRes! # +
     getUsersByCategoryId(id: ID!, type: userType, search: String): Users! # +
     findUsers(type: userType, search: String!): Users! # +
     # admin
@@ -92,6 +100,7 @@ export default gql`
     updateDescription(description: String!): Result! # +
     updateBirthday(birthday: String!): Result! # +
     updateCategories(categories: UpdateCategories): Result! # +
+    deleteAccount: Result!
     # admin
     updateUser(id: ID!, user: UpdateUser!): User! # +
     createUser(name: String!, email: String, password: String!): User! # +

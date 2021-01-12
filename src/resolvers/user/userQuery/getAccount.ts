@@ -20,9 +20,10 @@ export default async (_: any, args: any, context: any) =>
             expiresIn: isDevelopment ? '31d' : '3d',
           },
         );
-        return { admin, adminToken: token };
+        return { admin, adminToken: token, result: 'SUCCESS' };
       }
       const user = await User.findById(person.id);
+      if (!user || user?.deleted) return { result: 'ERROR' };
       const accountType = await AccountType.findOne({ user: person.id }).select(
         'from to status id',
       );
@@ -38,7 +39,7 @@ export default async (_: any, args: any, context: any) =>
           expiresIn: isDevelopment ? '31d' : '3d',
         },
       );
-      return { user, userToken: token };
+      return { user, userToken: token, result: 'SUCCESS' };
     },
     context,
     auth,

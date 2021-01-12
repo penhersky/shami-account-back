@@ -7,7 +7,7 @@ import { USER_TOKEN_SECURITY_KEY } from '../../../config';
 export default async (_: any, args: any) =>
   cather(async () => {
     const user = await User.findOne({ email: args.email });
-    if (!user || !user.active)
+    if (!user || !user.active || user.deleted)
       return {
         result: 'ERROR',
         status: 42,

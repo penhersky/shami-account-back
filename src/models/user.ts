@@ -16,6 +16,7 @@ export interface UserType extends mongoose.Document {
   birthday?: string;
   categoriesId?: [string];
   accountType?: mongoose.Types.ObjectId | TAccountType;
+  deleted?: boolean;
 }
 
 const maxLength = (val: Array<string>) => val.length < 3;
@@ -77,6 +78,11 @@ const Schema = new mongoose.Schema(
       default: [],
     },
     accountType: { type: mongoose.Schema.Types.ObjectId, ref: 'AccountType' },
+    deleted: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   {
     timestamps: true,

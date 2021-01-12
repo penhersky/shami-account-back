@@ -6,8 +6,10 @@ export default async (_: any, args: any, context: any) =>
   cather(
     async () => {
       const search = args?.search ? { $text: { $search: args.search } } : {};
+      await User.updateMany({}, { deleted: false });
       const users = await User.paginate({
         type: args?.type,
+        deleted: false,
         categoriesId: args.id,
         ...search,
       });
