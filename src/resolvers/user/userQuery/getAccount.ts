@@ -31,7 +31,7 @@ export default async (_: any, args: any, context: any) =>
         {
           id: user?.id,
           account: accountType,
-          type: 'user',
+          type: user?.type,
         },
         String(ACCESS_SERVICE_SECURITY_TOKEN_KEY),
         {
