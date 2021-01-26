@@ -63,6 +63,7 @@ export default gql`
     admin: Admin
     userToken: String
     adminToken: String
+    expiresIn: String
   }
 
   type UserRes {

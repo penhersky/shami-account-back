@@ -6,9 +6,11 @@ import confirmForgotPassword from './Mutation/confirmForgotPassword';
 
 import finishLogin from './Query/finishLogin';
 import startLogin from './Query/startLogin';
+import _getSingUpUsersByInterval from './Query/_getSingUpUsersByInterval';
 
 export default {
   Query: {
+    _getSingUpUsersByInterval,
     finishLogin,
     startLogin,
   },

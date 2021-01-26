@@ -39,7 +39,13 @@ export default async (_: any, args: any, context: any) =>
           expiresIn: isDevelopment ? '31d' : '3d',
         },
       );
-      return { user, userToken: token, result: 'SUCCESS' };
+
+      const date = new Date();
+      const expiresIn = date.setHours(
+        date.getHours() + 24 * (isDevelopment ? 31 : 3),
+      );
+
+      return { user, userToken: token, expiresIn, result: 'SUCCESS' };
     },
     context,
     auth,

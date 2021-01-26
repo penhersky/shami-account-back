@@ -40,9 +40,6 @@ export default async (_: any, args: any) =>
     const token = jwt.sign(
       { id: user.id, email: user.email },
       String(USER_TOKEN_SECURITY_KEY),
-      {
-        expiresIn: '31d',
-      },
     );
 
     return {
