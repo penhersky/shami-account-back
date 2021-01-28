@@ -4,15 +4,13 @@ import confirmRegistration from './Mutation/confirmRegistration';
 import forgotPassword from './Mutation/forgotPassword';
 import confirmForgotPassword from './Mutation/confirmForgotPassword';
 
-import finishLogin from './Query/finishLogin';
-import startLogin from './Query/startLogin';
+import login from './Query/login';
 import _getSingUpUsersByInterval from './Query/_getSingUpUsersByInterval';
 
 export default {
   Query: {
     _getSingUpUsersByInterval,
-    finishLogin,
-    startLogin,
+    login,
   },
   Mutation: {
     singUpCustomer,

@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
-import { User } from '../../../models';
+import { User, Security } from '../../../models';
 import cather from '../../../wrappers/resolverCather';
 import { USER_TOKEN_SECURITY_KEY } from '../../../config';
 
@@ -21,15 +22,21 @@ export default async (_: any, args: any) =>
         redirectTo: '/singIn/providers',
       };
 
-    const date = new Date();
-    date.setMinutes(date.getMinutes() + 20);
+    const security = await Security.findOne({ user: user.id });
+
+    const result = await bcrypt.compare(
+      args.password,
+      String(security?.password),
+    );
+    if (!result)
+      return {
+        result: 'ERROR',
+        status: 45,
+      };
 
     const token = jwt.sign(
-      { id: user.id, email: user.email, expiresIn: Number(date) },
+      { id: user.id, email: user.email },
       String(USER_TOKEN_SECURITY_KEY),
-      {
-        expiresIn: '6h',
-      },
     );
 
     return {
