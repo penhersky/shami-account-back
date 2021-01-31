@@ -5,7 +5,7 @@ export default gql`
     singUpCustomer(name: String, email: String): FormResult # +
     singUpPerformer(name: String, email: String): FormResult # +
     confirmRegistration(token: String, password: String): Result # +
-    forgotPassword(email: String): Result # +
+    forgotPassword(email: String): ResultWidthToken # +
     confirmForgotPassword(token: String, newPassword: String): Result # +
   }
 `;

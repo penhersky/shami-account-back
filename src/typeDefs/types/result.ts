@@ -14,9 +14,10 @@ export default gql`
     redirectTo: String
     value: String
     fields: [String]
+    token: String
   }
 
-  type LoginResult {
+  type ResultWidthToken {
     result: result!
     status: Int!
     redirectTo: String

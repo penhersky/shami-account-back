@@ -3,6 +3,9 @@ import cather from '../../../wrappers/resolverCather';
 import { registration } from '../../../lib/validation';
 import sendEmail from '../../../lib/sendEmail';
 import { singUp } from '../../../lib/emailMessage';
+import getCode from '../../../lib/createAuthCode';
+import { createTempToken } from '../../../lib/token';
+import { USER_TOKEN_SECURITY_KEY } from '../../../config';
 
 export default async (_: any, args: any) =>
   cather(async () => {
@@ -35,13 +38,20 @@ export default async (_: any, args: any) =>
         provider: 'email',
       }));
 
-    const { forTitle, html, object } = singUp(String(newUser.id), 'performer');
+    const { code, hash } = await getCode();
+    const { forTitle, html, object } = singUp('performer', code);
     await sendEmail(forTitle, object, html, [newUser.email]);
+
+    const token = createTempToken(
+      { userId: user?.id, code: hash },
+      String(USER_TOKEN_SECURITY_KEY),
+    );
 
     return {
       result: 'SUCCESS',
       redirectTo: '/singUp/step2',
       status: 20,
+      token,
       message: 'An email with a verified link has been sent',
     };
   });

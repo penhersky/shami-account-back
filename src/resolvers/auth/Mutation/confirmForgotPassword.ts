@@ -3,14 +3,18 @@ import bcrypt from 'bcrypt';
 import { Security } from '../../../models';
 import cather from '../../../wrappers/resolverCather';
 import { registration } from '../../../lib/validation';
-import verifyToken from '../../../lib/verifyToken';
+import { verify } from '../../../lib/token';
 
 import { USER_TOKEN_SECURITY_KEY, SALT } from '../../../config';
 
 export default async (_: any, args: any) =>
   cather(async () => {
-    const data = verifyToken(args.token, String(USER_TOKEN_SECURITY_KEY));
-    if (typeof data === 'string' || Number(data?.expiresIn) < Date.now())
+    const data = verify(args.token, String(USER_TOKEN_SECURITY_KEY));
+    if (
+      typeof data === 'string' ||
+      Number(data?.expiresIn) < Date.now() ||
+      data?.codeResult !== 'SUCCESS'
+    )
       return {
         result: 'ERROR',
         status: 48,
