@@ -44,5 +44,6 @@ export default async (_: any, args: any) =>
       status: 10,
       redirectTo: '/login/step2',
       token,
+      user,
     };
   });

@@ -23,4 +23,12 @@ export default gql`
     redirectTo: String
     token: String
   }
+
+  type ResultWidthTokenAndUser {
+    result: result!
+    status: Int!
+    redirectTo: String
+    token: String
+    user: User
+  }
 `;

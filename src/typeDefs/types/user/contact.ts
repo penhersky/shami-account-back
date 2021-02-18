@@ -13,15 +13,15 @@ export default gql`
   }
 
   input CreateContact {
-    name: String!
-    value: String
+    name: String
+    value: String!
     icon: String
     show: Boolean
   }
 
   input UpdateContact {
-    name: String!
-    value: String
+    name: String
+    value: String!
     icon: String
     show: Boolean
   }

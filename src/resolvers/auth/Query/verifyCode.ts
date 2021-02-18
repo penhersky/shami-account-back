@@ -16,9 +16,8 @@ export default async (_: any, args: any) =>
         message: 'Invalid expired!',
         redirectTo: '/singUp/step1',
       };
-
     const user = await User.findById(data?.userId);
-    if (!user || !user.active)
+    if (!user)
       return {
         result: 'ERROR',
         status: 44,

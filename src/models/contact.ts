@@ -22,11 +22,11 @@ const Schema = new mongoose.Schema(
     },
     name: {
       type: String,
-      required: true,
+      required: false,
     },
     value: {
       type: String,
-      required: false,
+      required: true,
     },
     icon: {
       type: String,

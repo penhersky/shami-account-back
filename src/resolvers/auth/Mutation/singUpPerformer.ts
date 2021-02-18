@@ -43,7 +43,7 @@ export default async (_: any, args: any) =>
     await sendEmail(forTitle, object, html, [newUser.email]);
 
     const token = createTempToken(
-      { userId: user?.id, code: hash },
+      { userId: newUser?.id, code: hash },
       String(USER_TOKEN_SECURITY_KEY),
     );
 
