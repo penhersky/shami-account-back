@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
-import { TAccountType } from './accountType';
-
 export interface UserType extends mongoose.Document {
   name: string;
   email: string;
@@ -15,7 +13,6 @@ export interface UserType extends mongoose.Document {
   description?: string;
   birthday?: string;
   categoriesId?: [string];
-  accountType?: mongoose.Types.ObjectId | TAccountType;
   deleted?: boolean;
 }
 
@@ -77,7 +74,6 @@ const Schema = new mongoose.Schema(
       validate: [maxLength, '{PATH} length must be 3 or less'],
       default: [],
     },
-    accountType: { type: mongoose.Schema.Types.ObjectId, ref: 'AccountType' },
     deleted: {
       type: Boolean,
       required: false,

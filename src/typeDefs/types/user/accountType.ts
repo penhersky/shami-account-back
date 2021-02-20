@@ -5,6 +5,7 @@ export default gql`
     id: ID!
     user: User
     status: String!
+    active: Boolean!
     from: String!
     to: String
     createdAt: String
@@ -12,6 +13,7 @@ export default gql`
   }
 
   input UpdateAccountType {
+    active: Boolean!
     status: String!
     from: String!
     to: String

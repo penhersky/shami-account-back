@@ -5,7 +5,7 @@ import auth from '../../../lib/checkAuth';
 export default async (root: any, args: any, context: any) =>
   cather(
     async () => {
-      return AccountType.findOne({ user: root.id });
+      return AccountType.findOne({ user: root.id, active: true });
     },
     context,
     auth,

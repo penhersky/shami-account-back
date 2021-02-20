@@ -3,8 +3,8 @@ import mongoosePaginate from 'mongoose-paginate-v2';
 
 export interface TAccountType extends mongoose.Document {
   user: string;
-  status?: string;
-
+  status: string;
+  active?: boolean;
   from?: string;
   to?: string;
 }
@@ -17,8 +17,12 @@ const Schema = new mongoose.Schema(
     },
     status: {
       type: String,
+      required: true,
+    },
+    active: {
+      type: Boolean,
       required: false,
-      default: 'default',
+      default: true,
     },
     from: {
       type: Date,
