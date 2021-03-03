@@ -22,7 +22,7 @@ export default async (_: any, args: any) =>
         fields: validationErr[0].path,
       };
 
-    const birthday = new Date(args.birthday);
+    const birthday = new Date(Number(args.birthday));
     const date = new Date();
     date.setMonth(date.getMonth() - 12 * 16);
     if (Number(birthday) > Number(date))
