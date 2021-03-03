@@ -9,7 +9,10 @@ import { USER_TOKEN_SECURITY_KEY } from '../../../config';
 
 export default async (_: any, args: any) =>
   cather(async () => {
-    const validationErr = await registration.user(args);
+    const validationErr = await registration.user({
+      name: args.name,
+      email: args.email,
+    });
     if (validationErr)
       return {
         result: 'ERROR',
@@ -17,6 +20,16 @@ export default async (_: any, args: any) =>
         value: validationErr[0].context?.value,
         status: 45,
         fields: validationErr[0].path,
+      };
+
+    const birthday = new Date(args.birthday);
+    const date = new Date();
+    date.setMonth(date.getMonth() - 12 * 16);
+    if (Number(birthday) > Number(date))
+      return {
+        result: 'ERROR',
+        status: 48,
+        fields: ['date'],
       };
 
     const user = await User.findOne({ email: args?.email });
@@ -34,6 +47,7 @@ export default async (_: any, args: any) =>
       (await User.create({
         type: 'customer',
         email: args.email,
+        birthday: String(birthday),
         name: args.name,
         provider: 'email',
       }));

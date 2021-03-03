@@ -1,6 +1,9 @@
 import Joi from 'joi';
 
-const user = async (data: {
+const user = async ({
+  name,
+  email,
+}: {
   name: string;
   email: string;
 }): Promise<undefined | Joi.ValidationErrorItem[]> => {
@@ -15,7 +18,7 @@ const user = async (data: {
       .required(),
   });
 
-  const result = schema.validate(data);
+  const result = schema.validate({ name, email });
   return result.error ? result.error.details : undefined;
 };
 
