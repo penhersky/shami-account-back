@@ -1,28 +1,38 @@
-import 'dotenv-flow/config';
+import 'dotenv/config';
 import express from 'express';
+import rateLimit from 'express-rate-limit';
 import { graphql } from 'body-parser-graphql';
-import { ApolloServer, makeExecutableSchema, gql } from 'apollo-server-express';
+import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
 import cors from 'cors';
+import passport from 'passport';
+
+import { authMiddleware, loginMiddleware } from './authBy/faceBook';
+import { authGoogleMiddleware, loginGoogleMiddleware } from './authBy/google';
+
+import typeDefs from './typeDefs';
+import resolvers from './resolvers';
 
 import database from './database';
-import { isDevelopment, PORT } from './config';
+import { PORT, DB_STR_URL } from './config';
+import { logInfo } from './lib/logger';
 
 const app = express();
 
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => 'The result was obtained successfully! Congratulations!',
-  },
-};
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 300,
+});
 
 app.use('*', cors());
+app.use(limiter);
 app.use(graphql());
+
+// authentication as
+app.use(passport.initialize());
+app.get('/login/facebook', loginMiddleware);
+app.get('/auth/facebook/callback', authMiddleware);
+app.get('/login/google', loginGoogleMiddleware);
+app.get('/auth/google/callback', authGoogleMiddleware);
 
 const schema = makeExecutableSchema({
   typeDefs,
@@ -37,18 +47,8 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-database
-  .authenticate()
-  .then(() => {
-    console.log('✔️ Successfully connected to mysql');
-  })
-  .catch((error: string) => {
-    if (isDevelopment) console.log(error);
-    console.log('❌ Unable to connect to the database');
-  });
+database(String(DB_STR_URL));
 
 app.listen({ port: PORT }, () =>
-  console.log(
-    `🚀 Server ready at 🔗 http://localhost:4000${server.graphqlPath}`,
-  ),
+  logInfo(`🚀 Server ready at 🔗 http://localhost:4000${server.graphqlPath}`),
 );

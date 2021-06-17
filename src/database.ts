@@ -1,21 +1,16 @@
-import { Sequelize } from 'sequelize';
+import mongoose from 'mongoose';
+import { logInfo, logError } from './lib/logger';
 
-import { DB_HOST, DB_NAME, DB_PASSWORD, DB_USER_NAME } from './config';
-
-const sequelize: Sequelize = new Sequelize(
-  String(DB_NAME),
-  String(DB_USER_NAME),
-  String(DB_PASSWORD),
-  {
-    host: DB_HOST,
-    dialect: 'mysql',
-    pool: {
-      max: 10,
-      min: 0,
-      acquire: 30000,
-      idle: 10000,
-    },
-  },
-);
-
-export default sequelize;
+export default async (url: string) => {
+  try {
+    await mongoose.connect(url, {
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useNewUrlParser: true,
+      useCreateIndex: true,
+    });
+    logInfo(`Connect to mongodb! ${url}`);
+  } catch (error) {
+    logError(error, 'connect to mongodb error');
+  }
+};
